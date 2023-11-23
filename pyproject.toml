@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "codegraphy"
+version = "0.1.0"
+description = "New generation coding environment"
+authors = ["Alejandro Alvarez"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
