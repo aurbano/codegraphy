@@ -1,16 +1,12 @@
 import { Box, FormControl, Input } from '@chakra-ui/react';
 
-import type { Cell } from '../../../types';
+import type { CellInput } from '../../../types';
 
 export interface InputCellProps {
-  cell: Cell;
+  cell: CellInput;
 }
 
 function InputCell({ cell }: InputCellProps) {
-  if (cell.cell_type !== 'input') {
-    return null;
-  }
-
   return (
     <Box px={2} py={1} minW="150px">
       <FormControl>

@@ -2,12 +2,15 @@ import { Box } from '@chakra-ui/react';
 import { FaCheck } from 'react-icons/fa';
 
 import InlineIcon from '../../../components/InlineIcon';
+import type { CellCode } from '../../types';
 
 export interface OutputProps {
-  outputs: string[];
+  cell: CellCode;
 }
 
-function Output({ outputs }: OutputProps) {
+function Output({ cell }: OutputProps) {
+  const { outputs, execution_time: executionTime } = cell;
+
   if (outputs.length === 0) {
     return null;
   }
@@ -35,10 +38,13 @@ function Output({ outputs }: OutputProps) {
         zIndex: -1,
       }}
     >
-      <Box position="absolute" bottom={1} right={1} color="gray.400">
-        <InlineIcon icon={<FaCheck />} mr={2} color="green.500" />
-        0.0s
-      </Box>
+      {typeof executionTime !== 'undefined' && (
+        <Box position="absolute" bottom={1} right={1} color="gray.400">
+          <InlineIcon icon={<FaCheck />} mr={2} color="green.500" />
+          {executionTime}s
+        </Box>
+      )}
+
       {outputs.map((output) => (
         <Box key={output}>{output}</Box>
       ))}

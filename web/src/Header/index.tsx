@@ -1,4 +1,16 @@
-import { Box, Button, ButtonGroup, Container, Flex, Heading, Spacer } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Container,
+  Flex,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spacer,
+} from '@chakra-ui/react';
 import { AiFillCode } from 'react-icons/ai';
 import { FaChevronDown } from 'react-icons/fa';
 import { IoPlayOutline } from 'react-icons/io5';
@@ -19,7 +31,16 @@ function Header() {
 
           <Flex direction="row">
             <ButtonGroup variant="outline" size="sm">
-              <Button rightIcon={<FaChevronDown />}>File</Button>
+              <Menu>
+                <MenuButton as={Button} rightIcon={<FaChevronDown />}>
+                  File
+                </MenuButton>
+                <MenuList>
+                  <MenuItem>New</MenuItem>
+                  <MenuItem>Save</MenuItem>
+                  <MenuItem>Save as...</MenuItem>
+                </MenuList>
+              </Menu>
               <Button leftIcon={<LuTextCursorInput />}>Add Input</Button>
               <Button leftIcon={<AiFillCode />}>Add Code</Button>
             </ButtonGroup>

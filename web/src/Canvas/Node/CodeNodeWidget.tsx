@@ -113,7 +113,7 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
         </Flex>
       </Box>
 
-      {cell.cell_type === 'code' && <Output outputs={cell.outputs} />}
+      {cell.cell_type === 'code' && <Output cell={cell} />}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { Editor } from '@monaco-editor/react';
 
-import type { Cell } from '../../../types';
+import type { CellCode } from '../../../types';
 
 const sampleContentPy = `def add(num1, num2):
   sum = num1 + num2
@@ -15,14 +15,10 @@ const sampleContentTs = `function getRandomInt() {
 `;
 
 export interface CodeCellProps {
-  cell: Cell;
+  cell: CellCode;
 }
 
 function CodeCell({ cell }: CodeCellProps) {
-  if (cell.cell_type !== 'code') {
-    return null;
-  }
-
   const isPython = cell.kernel === 'python3.9';
 
   return (

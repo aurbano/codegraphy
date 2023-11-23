@@ -21,6 +21,7 @@ export type CellCode = CellBase & {
   kernel: string;
   params: string[];
   execution_count: number;
+  execution_time: number | undefined;
   outputs: string[];
 };
 

@@ -42,7 +42,8 @@ export const sampleCodeGraph: CodeGraph = {
       kernel: 'python3.9',
       params: ['num1', 'num2'],
       returns: [0],
-      execution_count: 0,
+      execution_count: 1,
+      execution_time: 0.0,
       outputs: ['12'],
       position: {
         x: 800,
@@ -57,6 +58,7 @@ export const sampleCodeGraph: CodeGraph = {
       params: [],
       returns: [0],
       execution_count: 0,
+      execution_time: undefined,
       outputs: [],
       position: {
         x: 200,
