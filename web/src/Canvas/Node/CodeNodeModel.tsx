@@ -21,17 +21,19 @@ export class CodeNodeModel extends NodeModel {
 
     this.nodeOptions = options;
 
-    options.cell.returns.forEach((ret) => {
-      this.addPort(
-        new DefaultPortModel(false, String(ret), typeof ret === 'string' ? ret : undefined),
-      );
+    options.cell.returns.forEach((ret, index) => {
+      const name = `out-${index}`;
+      const label = typeof ret === 'string' ? ret : undefined;
+
+      this.addPort(new DefaultPortModel(false, name, label));
     });
 
     if (options.cell.cell_type === 'code') {
-      options.cell.params.forEach((param) => {
-        this.addPort(
-          new DefaultPortModel(true, String(param), typeof param === 'string' ? param : undefined),
-        );
+      options.cell.params.forEach((param, index) => {
+        const name = `in-${index}`;
+        const label = typeof param === 'string' ? param : undefined;
+
+        this.addPort(new DefaultPortModel(true, name, label));
       });
     }
   }

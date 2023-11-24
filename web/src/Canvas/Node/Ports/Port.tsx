@@ -10,6 +10,7 @@ interface PortProps {
 
 function Port({ portModel, engine, name, anchor }: PortProps) {
   const isConnected = Object.keys(portModel.getLinks()).length > 0;
+  const hasName = typeof name === 'string' && name.length > 0;
 
   return (
     <Box
@@ -18,11 +19,12 @@ function Port({ portModel, engine, name, anchor }: PortProps) {
       fontSize="sm"
       minH="1em"
       bg={isConnected ? 'blue.900' : 'gray.900'}
+      borderBottom={isConnected ? 'solid 1px' : undefined}
+      borderBottomColor="blue.600"
       color={!isConnected ? 'red.400' : undefined}
-      border="solid 1px"
-      borderColor="gray.700"
       rounded="md"
       cursor="pointer"
+      shadow="sm"
       py={1}
       px={2}
       {...{
@@ -44,7 +46,7 @@ function Port({ portModel, engine, name, anchor }: PortProps) {
         <Box bg={isConnected ? 'gray.500' : 'red.600'} w="100%" h="100%" rounded="full" />
       </PortWidget>
 
-      {typeof name === 'string' && name.length > 0 ? name : ''}
+      {hasName ? name : ''}
     </Box>
   );
 }

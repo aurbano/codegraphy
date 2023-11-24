@@ -10,24 +10,40 @@ import {
   MenuItem,
   MenuList,
   Spacer,
+  Text,
 } from '@chakra-ui/react';
 import { AiFillCode } from 'react-icons/ai';
-import { FaChevronDown } from 'react-icons/fa';
-import { IoPlayOutline } from 'react-icons/io5';
+import { FaChevronDown, FaCloud } from 'react-icons/fa';
+import { IoArrowRedo, IoArrowUndo, IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
-import { PiGraphFill } from 'react-icons/pi';
 
 import InlineIcon from '../components/InlineIcon';
+import Logo from '../components/Logo';
+import ServerStatus from './ServerStatus';
 
 function Header() {
   return (
     <Box bg="#283e59" borderBottom="2px solid" borderBottomColor="#3c5067" px={4} py={3}>
       <Container maxW="container.lg">
         <Flex direction="column" gap={4}>
-          <Heading size="md">
-            <InlineIcon mr={2} icon={<PiGraphFill />} />
-            Codegraphy
-          </Heading>
+          <Flex direction="row" alignItems="center">
+            <Flex direction="row" flexGrow={1} gap={4} alignItems="center">
+              <Logo fontSize="1.3rem" />
+
+              <Heading size="md" fontWeight="normal">
+                Notebook Name
+              </Heading>
+
+              <Text fontSize="sm" color="gray.500">
+                <InlineIcon icon={<FaCloud />} mr={2} />
+                Saved
+              </Text>
+            </Flex>
+
+            <Spacer />
+
+            <ServerStatus />
+          </Flex>
 
           <Flex direction="row">
             <ButtonGroup variant="outline" size="sm">
@@ -48,6 +64,12 @@ function Header() {
             <Spacer />
 
             <ButtonGroup variant="outline" size="sm">
+              <Button leftIcon={<IoArrowUndo />} isDisabled>
+                Undo
+              </Button>
+              <Button leftIcon={<IoArrowRedo />} isDisabled>
+                Redo
+              </Button>
               <Button leftIcon={<IoPlayOutline />}>Run All</Button>
             </ButtonGroup>
           </Flex>

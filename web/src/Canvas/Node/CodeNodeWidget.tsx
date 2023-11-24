@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Badge, Box, ButtonGroup, Flex, IconButton } from '@chakra-ui/react';
 import type { DiagramEngine } from '@projectstorm/react-diagrams';
 import { useState } from 'react';
@@ -45,11 +44,11 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
         rounded="md"
         shadow="lg"
         border="solid 5px"
-        borderColor={isSelected ? border : 'transparent'}
+        borderColor={isSelected ? border : 'rgba(255,255,255,0.1)'}
       >
         <Flex
           direction="row"
-          cursor="grab"
+          cursor="move"
           pl={2}
           pr={1}
           py={1}
@@ -94,19 +93,21 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
 
         <Flex direction="row" gap={4}>
           {hasInputs && (
-            <Box w={PORTS_WIDTH_IN} flexGrow={1}>
+            <Box maxW={PORTS_WIDTH_IN} flexGrow={1}>
               <Ports engine={engine} ports={ports} type="in" />
             </Box>
           )}
 
-          {!isCollapsed && (
+          {!isCollapsed ? (
             <Box flexGrow={2}>
               <CodeNodeContent cell={cell} />
             </Box>
+          ) : (
+            <Box flexGrow={2} />
           )}
 
           {hasOutputs && (
-            <Box w={PORTS_WIDTH_OUT} flexGrow={1}>
+            <Box maxW={PORTS_WIDTH_OUT} flexGrow={1}>
               <Ports engine={engine} ports={ports} type="out" />
             </Box>
           )}

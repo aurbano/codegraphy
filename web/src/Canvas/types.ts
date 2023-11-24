@@ -1,7 +1,9 @@
+export type PortName = string | number;
+
 interface CellBase {
   id: string;
   cell_type: 'input' | 'code';
-  returns: (string | number)[];
+  returns: PortName[];
   position: {
     x: number;
     y: number;
@@ -19,7 +21,7 @@ export type CellCode = CellBase & {
   cell_type: 'code';
   file_name: string;
   kernel: string;
-  params: string[];
+  params: PortName[];
   execution_count: number;
   execution_time: number | undefined;
   outputs: string[];

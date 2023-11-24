@@ -12,10 +12,6 @@ export interface PortsProps {
 }
 
 function Ports({ ports, engine, type }: PortsProps) {
-  const containerProps = {
-    [type === 'in' ? 'ml' : 'mr']: -3,
-  };
-
   return (
     <Flex
       direction="column"
@@ -23,15 +19,17 @@ function Ports({ ports, engine, type }: PortsProps) {
       h="100%"
       py={2}
       gap={2}
-      {...containerProps}
+      {...{
+        [type === 'in' ? 'ml' : 'mr']: -3,
+      }}
     >
       {Object.keys(ports)
         .filter((port) => {
           const portModel = ports[port] as DefaultPortModel;
           const options = portModel.getOptions();
-          const isIn = options.in;
+          const portType = options.in ? 'in' : 'out';
 
-          return type === 'in' ? isIn : !isIn;
+          return type === portType;
         })
         .map((port) => {
           const portModel = ports[port] as DefaultPortModel;

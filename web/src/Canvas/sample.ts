@@ -55,7 +55,7 @@ export const sampleCodeGraph: CodeGraph = {
       file_name: 'random.ts',
       cell_type: 'code',
       kernel: 'typescript4.2',
-      params: [],
+      params: [''],
       returns: [0],
       execution_count: 0,
       execution_time: undefined,
@@ -70,21 +70,21 @@ export const sampleCodeGraph: CodeGraph = {
     {
       from: {
         id: 'num1',
-        return: 0,
+        return: 'out-0',
       },
       to: {
         id: 'add',
-        param: 'num1',
+        param: 'in-0',
       },
     },
     {
       from: {
         id: 'num2',
-        return: 0,
+        return: 'out-0',
       },
       to: {
         id: 'add',
-        param: 'num2',
+        param: 'in-1',
       },
     },
   ],

@@ -23,10 +23,9 @@ function Output({ cell }: OutputProps) {
       rounded="sm"
       px={4}
       py={2}
-      maxH="500px"
-      overflow="auto"
       fontFamily="monospace"
       fontSize="xs"
+      shadow="lg"
       _before={{
         content: '" "',
         position: 'absolute',
@@ -44,10 +43,11 @@ function Output({ cell }: OutputProps) {
           {executionTime}s
         </Box>
       )}
-
-      {outputs.map((output) => (
-        <Box key={output}>{output}</Box>
-      ))}
+      <Box maxH="500px" overflow="auto">
+        {outputs.map((output) => (
+          <Box key={output}>{output}</Box>
+        ))}
+      </Box>
     </Box>
   );
 }
