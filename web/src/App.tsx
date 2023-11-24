@@ -9,7 +9,7 @@ function App() {
     <Flex direction="column" h="100vh">
       <Header />
 
-      <Box flexGrow={1} h="100%" bg="#1c2b3f" position="relative">
+      <Box flexGrow={1} h="100%" position="relative">
         <Canvas codeGraph={sampleCodeGraph} />
       </Box>
     </Flex>

@@ -21,11 +21,21 @@ import InlineIcon from '../components/InlineIcon';
 import Logo from '../components/Logo';
 import ServerStatus from './ServerStatus';
 
+const headerMaxW = 'container.lg';
+
 function Header() {
   return (
-    <Box bg="#283e59" borderBottom="2px solid" borderBottomColor="#3c5067" px={4} py={3}>
-      <Container maxW="container.lg">
-        <Flex direction="column" gap={4}>
+    <Box
+      bg="#283e59"
+      borderBottom="2px solid"
+      borderBottomColor="#3c5067"
+      px={4}
+      pt={3}
+      pb={2}
+      shadow="lg"
+    >
+      <Box mb={2} pb={3} borderBottom="solid 1px" borderBottomColor="rgba(255,255,255,0.1)">
+        <Container maxW={headerMaxW}>
           <Flex direction="row" alignItems="center">
             <Flex direction="row" flexGrow={1} gap={4} alignItems="center">
               <Logo fontSize="1.3rem" />
@@ -44,35 +54,37 @@ function Header() {
 
             <ServerStatus />
           </Flex>
+        </Container>
+      </Box>
 
-          <Flex direction="row">
-            <ButtonGroup variant="outline" size="sm">
-              <Menu>
-                <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-                  File
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>New</MenuItem>
-                  <MenuItem>Save</MenuItem>
-                  <MenuItem>Save as...</MenuItem>
-                </MenuList>
-              </Menu>
-              <Button leftIcon={<LuTextCursorInput />}>Add Input</Button>
-              <Button leftIcon={<AiFillCode />}>Add Code</Button>
-            </ButtonGroup>
+      <Container maxW={headerMaxW}>
+        <Flex direction="row">
+          <ButtonGroup variant="outline" size="sm">
+            <Menu>
+              <MenuButton as={Button} rightIcon={<FaChevronDown />}>
+                File
+              </MenuButton>
+              <MenuList>
+                <MenuItem>New</MenuItem>
+                <MenuItem>Save</MenuItem>
+                <MenuItem>Save as...</MenuItem>
+              </MenuList>
+            </Menu>
+            <Button leftIcon={<LuTextCursorInput />}>Add Input</Button>
+            <Button leftIcon={<AiFillCode />}>Add Code</Button>
+          </ButtonGroup>
 
-            <Spacer />
+          <Spacer />
 
-            <ButtonGroup variant="outline" size="sm">
-              <Button leftIcon={<IoArrowUndo />} isDisabled>
-                Undo
-              </Button>
-              <Button leftIcon={<IoArrowRedo />} isDisabled>
-                Redo
-              </Button>
-              <Button leftIcon={<IoPlayOutline />}>Run All</Button>
-            </ButtonGroup>
-          </Flex>
+          <ButtonGroup variant="outline" size="sm">
+            <Button leftIcon={<IoArrowUndo />} isDisabled>
+              Undo
+            </Button>
+            <Button leftIcon={<IoArrowRedo />} isDisabled>
+              Redo
+            </Button>
+            <Button leftIcon={<IoPlayOutline />}>Run All</Button>
+          </ButtonGroup>
         </Flex>
       </Container>
     </Box>

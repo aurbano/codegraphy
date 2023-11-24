@@ -55,7 +55,7 @@ export const sampleCodeGraph: CodeGraph = {
       file_name: 'random.ts',
       cell_type: 'code',
       kernel: 'typescript4.2',
-      params: [''],
+      params: [],
       returns: [0],
       execution_count: 0,
       execution_time: undefined,
