@@ -20,7 +20,7 @@ function Logo({ ...rest }: LogoProps) {
       {...rest}
     >
       <HStack gap={2} divider={<StackDivider borderColor={dividerColor} />}>
-        <InlineIcon icon={<PiGraphFill />} mr={0} pl={4} py={2} />
+        <InlineIcon fontSize="1.5em" icon={<PiGraphFill />} mr={0} pl={4} py={2} />
         <Text pr={4} py={2}>
           Codegraphy
         </Text>
