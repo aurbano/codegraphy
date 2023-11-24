@@ -1,6 +1,7 @@
 import { Box, type BoxProps, HStack, StackDivider, Text } from '@chakra-ui/react';
 import { PiGraphFill } from 'react-icons/pi';
 
+import useIsDark from '../../util/hooks/useIsDark';
 import InlineIcon from '../InlineIcon';
 
 export type LogoProps = BoxProps;
@@ -9,6 +10,8 @@ const borderColor = 'rgba(255,255,255,0.3)';
 const dividerColor = 'rgba(255,255,255,0.1)';
 
 function Logo({ ...rest }: LogoProps) {
+  const isDark = useIsDark();
+
   return (
     <Box
       border="solid 1px"
@@ -16,7 +19,7 @@ function Logo({ ...rest }: LogoProps) {
       rounded="md"
       shadow="md"
       fontWeight="bold"
-      color="primary.200"
+      color={isDark ? 'primary.200' : 'primary.500'}
       {...rest}
     >
       <HStack gap={2} divider={<StackDivider borderColor={dividerColor} />}>

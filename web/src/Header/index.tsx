@@ -17,18 +17,22 @@ import { FaChevronDown, FaCloud } from 'react-icons/fa';
 import { IoArrowRedo, IoArrowUndo, IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
 
+import ToggleTheme from '../components/ChangeTheme';
 import InlineIcon from '../components/InlineIcon';
 import Logo from '../components/Logo';
+import useIsDark from '../util/hooks/useIsDark';
 import ServerStatus from './ServerStatus';
 
 const headerMaxW = 'container.lg';
 
 function Header() {
+  const isDark = useIsDark();
+
   return (
     <Box
-      bg="#283e59"
+      bg={isDark ? '#283e59' : '#ccc'}
       borderBottom="2px solid"
-      borderBottomColor="#3c5067"
+      borderBottomColor={isDark ? '#3c5067' : '#ccc'}
       px={4}
       pt={3}
       pb={2}
@@ -68,6 +72,7 @@ function Header() {
                 <MenuItem>New</MenuItem>
                 <MenuItem>Save</MenuItem>
                 <MenuItem>Save as...</MenuItem>
+                <ToggleTheme />
               </MenuList>
             </Menu>
             <Button leftIcon={<LuTextCursorInput />} colorScheme="input">

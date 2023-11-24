@@ -1,7 +1,7 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import type React from 'react';
 
-import theme from './theme';
+import theme, { initialColorMode } from './theme';
 
 export interface SetupContextProps {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ export interface SetupContextProps {
 function SetupContext({ children }: SetupContextProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
+      <ColorModeScript initialColorMode={initialColorMode} />
       {children}
     </ChakraProvider>
   );

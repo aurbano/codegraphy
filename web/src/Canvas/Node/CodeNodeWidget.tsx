@@ -45,6 +45,7 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
         shadow="lg"
         border="solid 5px"
         borderColor={isSelected ? border : 'rgba(255,255,255,0.1)'}
+        color="muted.100"
       >
         <Flex
           direction="row"

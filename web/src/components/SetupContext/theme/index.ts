@@ -1,9 +1,12 @@
 import { extendTheme, theme as baseTheme, type ThemeConfig } from '@chakra-ui/react';
+import { mode, type StyleFunctionProps } from '@chakra-ui/theme-tools';
 
 import * as overrides from './overrides';
 
+export const initialColorMode = 'light';
+
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode,
   // useSystemColorMode: true,
 };
 
@@ -11,11 +14,11 @@ const theme = extendTheme({
   config,
 
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       'html, body': {
-        background: '#1c2b3f',
+        background: mode('#ccc', '#1c2b3f')(props),
       },
-    },
+    }),
   },
 
   colors: {
