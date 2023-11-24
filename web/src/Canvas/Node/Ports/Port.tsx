@@ -18,10 +18,10 @@ function Port({ portModel, engine, name, anchor }: PortProps) {
       z-index={10}
       fontSize="sm"
       minH="1em"
-      bg={isConnected ? 'blue.900' : 'gray.900'}
+      bg={isConnected ? 'port.900' : 'muted.900'}
       borderBottom={isConnected ? 'solid 1px' : undefined}
-      borderBottomColor="blue.600"
-      color={!isConnected ? 'red.400' : undefined}
+      borderBottomColor="port.600"
+      color={!isConnected ? 'negative.400' : undefined}
       rounded="md"
       cursor="pointer"
       shadow="sm"
@@ -43,7 +43,7 @@ function Port({ portModel, engine, name, anchor }: PortProps) {
           [anchor]: '-5px',
         }}
       >
-        <Box bg={isConnected ? 'gray.500' : 'red.600'} w="100%" h="100%" rounded="full" />
+        <Box bg={isConnected ? 'muted.500' : 'negative.600'} w="100%" h="100%" rounded="full" />
       </PortWidget>
 
       {hasName ? name : ''}

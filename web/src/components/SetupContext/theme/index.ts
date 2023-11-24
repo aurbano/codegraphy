@@ -7,10 +7,6 @@ const config: ThemeConfig = {
   // useSystemColorMode: true,
 };
 
-export const primary = {
-  ...baseTheme.colors.blue,
-};
-
 const theme = extendTheme({
   config,
 
@@ -23,7 +19,7 @@ const theme = extendTheme({
   },
 
   colors: {
-    primary,
+    primary: baseTheme.colors.blue,
     focus: baseTheme.colors.cyan,
     secondary: baseTheme.colors.blue,
     positive: baseTheme.colors.green,
@@ -31,6 +27,9 @@ const theme = extendTheme({
     warning: baseTheme.colors.orange,
     information: baseTheme.colors.blue,
     muted: baseTheme.colors.gray,
+    input: baseTheme.colors.green,
+    code: baseTheme.colors.blue,
+    port: baseTheme.colors.blue,
   },
 
   components: {

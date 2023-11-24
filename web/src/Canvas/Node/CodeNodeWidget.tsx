@@ -33,8 +33,8 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
   const hasInputs = isCode && cell.params.length > 0;
   const hasOutputs = cell.returns.length > 0;
 
-  const bg = isCode ? 'blue.700' : 'green.600';
-  const border = isCode ? 'blue.200' : 'green.200';
+  const bg = isCode ? 'code.700' : 'input.600';
+  const border = isCode ? 'code.200' : 'input.200';
   const icon = isCode ? <AiFillCode /> : <LuTextCursorInput />;
 
   return (
@@ -54,7 +54,7 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
           py={1}
           gap={2}
           borderBottom="solid 1px"
-          borderBottomColor="blue.300"
+          borderBottomColor="code.300"
         >
           <Box fontSize="xl" position="relative" top="2px">
             {icon}

@@ -44,7 +44,7 @@ function Header() {
                 Notebook Name
               </Heading>
 
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="sm" color="muted.500">
                 <InlineIcon icon={<FaCloud />} mr={2} />
                 Saved
               </Text>
@@ -70,8 +70,12 @@ function Header() {
                 <MenuItem>Save as...</MenuItem>
               </MenuList>
             </Menu>
-            <Button leftIcon={<LuTextCursorInput />}>Add Input</Button>
-            <Button leftIcon={<AiFillCode />}>Add Code</Button>
+            <Button leftIcon={<LuTextCursorInput />} colorScheme="input">
+              Add Input
+            </Button>
+            <Button leftIcon={<AiFillCode />} colorScheme="code">
+              Add Code
+            </Button>
           </ButtonGroup>
 
           <Spacer />

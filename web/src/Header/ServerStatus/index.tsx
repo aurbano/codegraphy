@@ -11,7 +11,7 @@ function ServerStatus() {
       size="sm"
       variant="ghost"
       leftIcon={
-        <Text color={isOnline ? 'green.400' : 'red.400'}>
+        <Text color={isOnline ? 'positive.400' : 'negative.400'}>
           <FaCircle />
         </Text>
       }

@@ -16,7 +16,7 @@ function Logo({ ...rest }: LogoProps) {
       rounded="md"
       shadow="md"
       fontWeight="bold"
-      color="blue.200"
+      color="primary.200"
       {...rest}
     >
       <HStack gap={2} divider={<StackDivider borderColor={dividerColor} />}>

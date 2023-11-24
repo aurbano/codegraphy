@@ -18,7 +18,7 @@ function Output({ cell }: OutputProps) {
   return (
     <Box
       position="relative"
-      bg="gray.900"
+      bg="muted.900"
       mt={4}
       rounded="sm"
       px={4}
@@ -29,7 +29,7 @@ function Output({ cell }: OutputProps) {
       _before={{
         content: '" "',
         position: 'absolute',
-        bg: 'blue.500',
+        bg: 'code.500',
         w: '3px',
         h: 5,
         top: -4,
@@ -38,8 +38,8 @@ function Output({ cell }: OutputProps) {
       }}
     >
       {typeof executionTime !== 'undefined' && (
-        <Box position="absolute" bottom={1} right={1} color="gray.400">
-          <InlineIcon icon={<FaCheck />} mr={2} color="green.500" />
+        <Box position="absolute" bottom={1} right={1} color="muted.400">
+          <InlineIcon icon={<FaCheck />} mr={2} color="positive.500" />
           {executionTime}s
         </Box>
       )}

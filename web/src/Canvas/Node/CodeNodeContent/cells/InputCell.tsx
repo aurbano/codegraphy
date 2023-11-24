@@ -12,7 +12,7 @@ function InputCell({ cell }: InputCellProps) {
       <FormControl>
         <Input
           type={cell.type}
-          bg="gray.700"
+          bg="muted.700"
           value={cell.value}
           placeholder="Input..."
           onKeyDown={(e) => e.stopPropagation()}
