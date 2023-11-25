@@ -3,6 +3,7 @@ name = "codegraphy"
 version = "0.1.0"
 description = "New generation coding environment"
 authors = ["Alejandro Alvarez"]
+license = "BSD-3-Clause"
 readme = "README.md"
 
 packages = [
