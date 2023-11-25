@@ -15,8 +15,5 @@ export default defineConfig({
       mock: true,
       prettier: true,
     },
-    // hooks: {
-    //   afterAllFilesWrite: 'yarn run prettier --write',
-    // },
   },
 });

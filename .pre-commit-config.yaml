@@ -1,0 +1,50 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.3.0"
+
+    hooks:
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+      # - id: no-commit-to-branch
+      - id: forbid-new-submodules
+      - id: check-shebang-scripts-are-executable
+      - id: check-executables-have-shebangs
+
+  - repo: https://github.com/psf/black
+    rev: 22.8.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          [
+            flake8-bugbear==23.5.9,
+            flake8-debugger==4.1.2,
+          ]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        alias: flake8_force_keyword_arguments
+        name: flake8_force_keyword_arguments
+        additional_dependencies:
+          [
+            flake8-force-keyword-arguments==1.0.4,
+          ]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.6.1"
+    hooks:
+      - id: mypy
+        # add --no-incremental when you want to clear the local cache
+        args: [--warn-unused-ignores, --strict]
+        additional_dependencies:
+          [
+            fastapi==0.104.1,
+          ]
+exclude: ^web/|^example_graphs/
