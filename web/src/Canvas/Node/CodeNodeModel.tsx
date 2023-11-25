@@ -4,10 +4,11 @@ import {
   NodeModel,
 } from '@projectstorm/react-diagrams';
 
-import type { Cell } from '../types';
+import type { Cell, CellState } from '../types';
 
 export type CodeNodeModelOptions = {
   cell: Cell;
+  cellState: CellState;
 } & DefaultNodeModelOptions;
 
 export class CodeNodeModel extends NodeModel {

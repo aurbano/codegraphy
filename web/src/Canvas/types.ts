@@ -44,3 +44,7 @@ export interface CodeGraph {
   cells: Cell[];
   links: Link[];
 }
+
+export interface CellState {
+  isLoading: boolean;
+}

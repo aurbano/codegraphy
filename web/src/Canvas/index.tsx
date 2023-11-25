@@ -34,6 +34,9 @@ function Canvas({ codeGraph }: CanvasProps) {
         name: `${cell.cell_type}: ${cell.id}`,
         color: CELL_COLORS[cell.cell_type],
         cell,
+        cellState: {
+          isLoading: false,
+        },
       });
 
       node.setPosition(cell.position.x, cell.position.y);

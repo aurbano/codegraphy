@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prettier": "prettier --write src"
+    "prettier": "prettier --write src",
+    "update:models": "orval --config ./src/api/orval.config.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -19,6 +20,8 @@
     "@monaco-editor/react": "^4.6.0",
     "@projectstorm/react-canvas-core": "^7.0.2",
     "@projectstorm/react-diagrams": "^7.0.3",
+    "@tanstack/react-query": "^5.8.7",
+    "axios": "^1.6.2",
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,6 +31,7 @@
     "@babel/core": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@types/babel__core": "^7",
+    "@types/lodash": "^4",
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.16",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
@@ -41,6 +45,10 @@
     "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-sonarjs": "^0.23.0",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "lodash": "^4.17.21",
+    "msw": "^2.0.9",
+    "orval": "^6.20.0",
+    "prettier": "^3.1.0",
     "typescript": "5.2.2",
     "vite": "^5.0.0"
   },

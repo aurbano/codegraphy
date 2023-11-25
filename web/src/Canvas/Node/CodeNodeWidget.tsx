@@ -1,4 +1,4 @@
-import { Badge, Box, ButtonGroup, Flex, IconButton } from '@chakra-ui/react';
+import { Badge, Box, ButtonGroup, Flex, IconButton, Progress } from '@chakra-ui/react';
 import type { DiagramEngine } from '@projectstorm/react-diagrams';
 import { useState } from 'react';
 import { AiFillCode } from 'react-icons/ai';
@@ -23,7 +23,7 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const ports = node.getPorts();
-  const { cell } = node.nodeOptions;
+  const { cell, cellState } = node.nodeOptions;
 
   const isSelected = node.isSelected();
   const isCode = cell.cell_type === 'code';
@@ -91,6 +91,8 @@ function CodeNodeWidget({ node, engine }: NodeProps) {
             </Box>
           )}
         </Flex>
+
+        {cellState.isLoading && <Progress size="xs" isIndeterminate />}
 
         <Flex direction="row" gap={4}>
           {hasInputs && (
