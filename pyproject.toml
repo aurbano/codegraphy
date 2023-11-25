@@ -5,6 +5,14 @@ description = "New generation coding environment"
 authors = ["Alejandro Alvarez"]
 readme = "README.md"
 
+packages = [
+    { include = "src" },
+]
+
+include = [
+  "web/dist/**/*",
+]
+
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.104.1"
