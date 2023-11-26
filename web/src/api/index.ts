@@ -20,6 +20,7 @@ import type {
   GraphModelInput,
   GraphModelOutput,
   HTTPValidationError,
+  ReadCellContentsApiCellsGetParams,
   ReadGraphApiGraphsGetParams,
   UpdateGraphApiGraphsPutParams,
 } from './schema';
@@ -219,4 +220,79 @@ export const useUpdateGraphApiGraphsPut = <
   const mutationOptions = getUpdateGraphApiGraphsPutMutationOptions(options);
 
   return useMutation(mutationOptions);
+};
+
+/**
+ * @summary Read Cell Contents
+ */
+export const readCellContentsApiCellsGet = (
+  params: ReadCellContentsApiCellsGetParams,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<string>> => {
+  return axios.default.get(`http://127.0.0.1:8000/api/cells/`, {
+    ...options,
+    params: { ...params, ...options?.params },
+  });
+};
+
+export const getReadCellContentsApiCellsGetQueryKey = (
+  params: ReadCellContentsApiCellsGetParams,
+) => {
+  return [`http://127.0.0.1:8000/api/cells/`, ...(params ? [params] : [])] as const;
+};
+
+export const getReadCellContentsApiCellsGetQueryOptions = <
+  TData = Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+  TError = AxiosError<HTTPValidationError>,
+>(
+  params: ReadCellContentsApiCellsGetParams,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>, TError, TData>
+    >;
+    axios?: AxiosRequestConfig;
+  },
+) => {
+  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getReadCellContentsApiCellsGetQueryKey(params);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>> = ({
+    signal,
+  }) => readCellContentsApiCellsGet(params, { signal, ...axiosOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type ReadCellContentsApiCellsGetQueryResult = NonNullable<
+  Awaited<ReturnType<typeof readCellContentsApiCellsGet>>
+>;
+export type ReadCellContentsApiCellsGetQueryError = AxiosError<HTTPValidationError>;
+
+/**
+ * @summary Read Cell Contents
+ */
+export const useReadCellContentsApiCellsGet = <
+  TData = Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+  TError = AxiosError<HTTPValidationError>,
+>(
+  params: ReadCellContentsApiCellsGetParams,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>, TError, TData>
+    >;
+    axios?: AxiosRequestConfig;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const queryOptions = getReadCellContentsApiCellsGetQueryOptions(params, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
 };

@@ -1,6 +1,6 @@
-import { Box, Container, DarkMode, Flex } from '@chakra-ui/react';
+import { Box, Container, DarkMode, Flex, IconButton, Link, Spacer } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
-import { FaCloud } from 'react-icons/fa';
+import { FaCloud, FaGithub } from 'react-icons/fa';
 
 import AnimatedBox from '../../../components/AnimatedBox';
 import InlineIcon from '../../../components/InlineIcon';
@@ -41,6 +41,21 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => (
                   <InlineIcon icon={<FaCloud />} mr={2} />
                   Saved
                 </Box>
+
+                <Spacer />
+
+                <IconButton
+                  aria-label="Github"
+                  title="Github"
+                  icon={<FaGithub />}
+                  size="sm"
+                  fontSize="xl"
+                  rounded="full"
+                  variant="ghost"
+                  as={Link}
+                  href="http://github.com/aurbano/codegraphy"
+                  target="_blank"
+                />
               </Flex>
             </Flex>
           </Container>

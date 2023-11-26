@@ -7,6 +7,7 @@ import Canvas from '../../../components/Canvas';
 import type { CodeNodeModel } from '../../../components/Canvas/Node/CodeNodeModel';
 import CenterLoader from '../../../components/CenterLoader';
 import type { GraphModel } from '../../../models';
+import GraphContextProvider from './GraphContext';
 import GraphContextMenu from './GraphContextMenu';
 import GraphHeader from './GraphHeader';
 
@@ -84,7 +85,7 @@ const GraphLoader = ({
   };
 
   return (
-    <>
+    <GraphContextProvider graphPath={graphPath}>
       <GraphContextMenu selectedNode={selectedNode} canvasContainerRef={canvasContainerRef} />
       <Flex direction="column" h="100%">
         <GraphHeader
@@ -113,7 +114,7 @@ const GraphLoader = ({
           />
         </Box>
       </Flex>
-    </>
+    </GraphContextProvider>
   );
 };
 

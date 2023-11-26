@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 
-from . import graphs
+from src import graphs, cells
 
 app = FastAPI()
 
@@ -30,6 +30,7 @@ def read_root() -> ApiRoot:
 
 
 router.include_router(graphs.router)
+router.include_router(cells.router)
 
 app.include_router(router)
 app.mount("/", app=StaticFiles(directory="web/dist", html=True), name="web")

@@ -25,6 +25,7 @@ export * from './linkItemModel';
 export * from './linkItemModelPort';
 export * from './linkModel';
 export * from './metadataModel';
+export * from './readCellContentsApiCellsGetParams';
 export * from './readGraphApiGraphsGetParams';
 export * from './updateGraphApiGraphsPutParams';
 export * from './validationError';
