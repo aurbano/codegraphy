@@ -21,13 +21,13 @@ import ToggleTheme from '../../../../components/ChangeTheme';
 import type { GraphCell, GraphModel } from '../../../../models';
 import copyObject from '../../../../util/copyObject';
 import getKeyboardCommand from '../../../../util/getKeyboardCommand';
+import useGraphModel from '../../../../util/hooks/useGraphModel';
 import useIsDark from '../../../../util/hooks/useIsDark';
 import { HEADER_MAX_W } from '../../constants';
 import OpenGraph from '../../Header/OpenGraph';
 import AddInput from './AddInput';
 
 export interface GraphHeaderProps {
-  graph: GraphModel;
   isHeaderCollapsed: boolean;
   isAddingCell: boolean;
   onOpenGraph: (graphPath: string) => void;
@@ -36,18 +36,18 @@ export interface GraphHeaderProps {
 }
 
 const GraphHeader = ({
-  graph,
   isHeaderCollapsed,
   isAddingCell,
   onOpenGraph,
   onUpdateGraph,
   toggleHeaderCollapsed,
 }: GraphHeaderProps) => {
+  const { graphModel } = useGraphModel();
   const isDark = useIsDark();
   const bg = useColorModeValue('headerBgLight', 'headerBgDark');
 
   const onAddCell = (newCell: GraphCell) => {
-    const mutable_graph = copyObject(graph);
+    const mutable_graph = copyObject(graphModel);
     mutable_graph.cells.push(newCell);
 
     onUpdateGraph(mutable_graph);

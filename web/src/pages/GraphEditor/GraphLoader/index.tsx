@@ -2,12 +2,12 @@ import { Alert, AlertDescription, AlertIcon, Box, Container, Flex } from '@chakr
 import { useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 
-import { useReadGraphApiGraphsGet, useUpdateGraphApiGraphsPut } from '../../../api';
+import { useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
 import type { CodeNodeModel } from '../../../components/Canvas/Node/CodeNodeModel';
 import CenterLoader from '../../../components/CenterLoader';
 import type { GraphModel } from '../../../models';
-import GraphContextProvider from './GraphContext';
+import useGraphModel from '../../../util/hooks/useGraphModel';
 import GraphContextMenu from './GraphContextMenu';
 import GraphHeader from './GraphHeader';
 
@@ -29,20 +29,7 @@ const GraphLoader = ({
 
   const [selectedNode, setSelectedNode] = useState<CodeNodeModel>();
 
-  const {
-    isLoading,
-    data: response,
-    isError,
-  } = useReadGraphApiGraphsGet(
-    {
-      f: graphPath,
-    },
-    {
-      query: {
-        queryKey: ['graphs', graphPath],
-      },
-    },
-  );
+  const { isLoading, data: response, isError } = useGraphModel();
 
   const updateMutation = useUpdateGraphApiGraphsPut({
     mutation: {
@@ -78,18 +65,15 @@ const GraphLoader = ({
     );
   }
 
-  const codeGraph = response.data;
-
   const preventEvent = (e: React.MouseEvent | React.UIEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
 
   return (
-    <GraphContextProvider graphPath={graphPath}>
+    <>
       <GraphContextMenu selectedNode={selectedNode} canvasContainerRef={canvasContainerRef} />
       <Flex direction="column" h="100%">
         <GraphHeader
-          graph={codeGraph}
           isHeaderCollapsed={isHeaderCollapsed}
           toggleHeaderCollapsed={toggleHeaderCollapsed}
           isAddingCell={updateMutation.isPending}
@@ -106,15 +90,10 @@ const GraphLoader = ({
           onWheel={preventEvent}
           onWheelCapture={preventEvent}
         >
-          <Canvas
-            key="canvas"
-            codeGraph={codeGraph}
-            onUpateGraph={onUpdateGraph}
-            onSelectNode={setSelectedNode}
-          />
+          <Canvas key="canvas" onUpateGraph={onUpdateGraph} onSelectNode={setSelectedNode} />
         </Box>
       </Flex>
-    </GraphContextProvider>
+    </>
   );
 };
 

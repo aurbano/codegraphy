@@ -1,14 +1,16 @@
 import { Heading, Input, useBoolean } from '@chakra-ui/react';
 import { useState } from 'react';
 
+import { useGraphContext } from '../../GraphLoader/GraphContext';
+
 const MAX_DISPLAY_LENGTH = 30;
 
 export interface EditableGraphPathProps {
-  graphPath: string;
   onOpenGraph: (graphPath: string) => void;
 }
 
-const EditableGraphPath = ({ graphPath, onOpenGraph }: EditableGraphPathProps) => {
+const EditableGraphPath = ({ onOpenGraph }: EditableGraphPathProps) => {
+  const { graphPath } = useGraphContext();
   const [newGraphPath, setNewGraphPath] = useState(graphPath);
   const [isEditing, { toggle }] = useBoolean(false);
 

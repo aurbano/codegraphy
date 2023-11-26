@@ -9,12 +9,11 @@ import { HEADER_MAX_W } from '../constants';
 import EditableGraphPath from './EditableGraphPath';
 
 export interface HeaderProps {
-  graphPath: string;
   isHeaderCollapsed: boolean;
   onOpenGraph: (graphPath: string) => void;
 }
 
-const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => (
+const Header = ({ isHeaderCollapsed, onOpenGraph }: HeaderProps) => (
   <DarkMode>
     <AnimatePresence>
       {!isHeaderCollapsed && (
@@ -35,7 +34,7 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => (
               <Flex direction="row" flexGrow={1} gap={4} alignItems="center">
                 <Logo fontSize="1.3rem" />
 
-                <EditableGraphPath graphPath={graphPath} onOpenGraph={onOpenGraph} />
+                <EditableGraphPath onOpenGraph={onOpenGraph} />
 
                 <Box fontSize="sm" color="muted.500" minW="70px">
                   <InlineIcon icon={<FaCloud />} mr={2} />

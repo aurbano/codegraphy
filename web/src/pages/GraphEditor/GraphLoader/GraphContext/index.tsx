@@ -1,6 +1,10 @@
-import { createContext, type ReactNode, useMemo } from 'react';
+import { createContext, type ReactNode, useContext, useMemo } from 'react';
 
-export const GraphContext = createContext({
+interface GraphContextData {
+  graphPath: string;
+}
+
+export const GraphContext = createContext<GraphContextData>({
   graphPath: '',
 });
 
@@ -18,6 +22,12 @@ const GraphContextProvider = ({ graphPath, children }: GraphContextProps) => {
   );
 
   return <GraphContext.Provider value={ctx}>{children}</GraphContext.Provider>;
+};
+
+export const useGraphContext = () => {
+  // eslint-disable-next-line sonarjs/prefer-immediate-return
+  const ctx = useContext(GraphContext);
+  return ctx;
 };
 
 export default GraphContextProvider;

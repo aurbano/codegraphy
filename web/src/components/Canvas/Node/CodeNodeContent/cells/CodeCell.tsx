@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/react';
 import { Editor } from '@monaco-editor/react';
-import { useContext } from 'react';
 
 import { useReadCellContentsApiCellsGet } from '../../../../../api';
 import type { CodeCellModel } from '../../../../../api/schema';
-import { GraphContext } from '../../../../../pages/GraphEditor/GraphLoader/GraphContext';
+import { useGraphContext } from '../../../../../pages/GraphEditor/GraphLoader/GraphContext';
 import useIsDark from '../../../../../util/hooks/useIsDark';
 
 export interface CodeCellProps {
@@ -13,7 +12,7 @@ export interface CodeCellProps {
 
 const CodeCell = ({ cell }: CodeCellProps) => {
   const isDark = useIsDark();
-  const { graphPath } = useContext(GraphContext);
+  const { graphPath } = useGraphContext();
   const isPython = cell.kernel === 'python3.9';
 
   const { data: response } = useReadCellContentsApiCellsGet(
