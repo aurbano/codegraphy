@@ -1,9 +1,21 @@
-import { Alert, AlertDescription, AlertIcon, Container } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Container,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+} from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
+import { AiFillCode } from 'react-icons/ai';
+import { FaTrash } from 'react-icons/fa';
+import { LuTextCursorInput } from 'react-icons/lu';
 
 import { useReadGraphApiGraphsGet, useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
 import CenterLoader from '../../../components/CenterLoader';
+import { ContextMenu } from '../../../components/ContextMenu';
 import type { GraphModel } from '../../../models';
 import GraphHeader from './GraphHeader';
 
@@ -84,7 +96,22 @@ const GraphLoader = ({
         onUpdateGraph={onUpdateGraph}
       />
 
-      <Canvas codeGraph={codeGraph} onUpateGraph={onUpdateGraph} />
+      <ContextMenu<HTMLDivElement>
+        renderMenu={() => (
+          <MenuList fontSize="sm">
+            <MenuItem icon={<LuTextCursorInput />}>Add Input Cell</MenuItem>
+            <MenuItem icon={<AiFillCode />}>Add Code Cell</MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<FaTrash />}>Delete Cell</MenuItem>
+          </MenuList>
+        )}
+      >
+        {(ref) => (
+          <div ref={ref} style={{ width: '100%', height: '100%' }}>
+            <Canvas codeGraph={codeGraph} onUpateGraph={onUpdateGraph} />
+          </div>
+        )}
+      </ContextMenu>
     </>
   );
 };
