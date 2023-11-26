@@ -1,4 +1,4 @@
-import { Container, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Flex, useColorModeValue } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import { FaCloud } from 'react-icons/fa';
 
@@ -40,10 +40,10 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => {
 
                 <EditableGraphPath graphPath={graphPath} onOpenGraph={onOpenGraph} />
 
-                <Text fontSize="sm" color="muted.500" minW="70px">
+                <Box fontSize="sm" color="muted.500" minW="70px">
                   <InlineIcon icon={<FaCloud />} mr={2} />
                   Saved
-                </Text>
+                </Box>
               </Flex>
             </Flex>
           </Container>
@@ -51,6 +51,6 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => {
       )}
     </AnimatePresence>
   );
-}
+};
 
 export default Header;

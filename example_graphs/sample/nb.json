@@ -82,62 +82,6 @@
       "execution_count": 0,
       "execution_time": null,
       "outputs": []
-    },
-    {
-      "id": "sdf",
-      "cell_type": "input",
-      "returns": [
-        0
-      ],
-      "position": {
-        "x": 100,
-        "y": 100
-      },
-      "label": "sdf",
-      "type": "text",
-      "value": ""
-    },
-    {
-      "id": "Sample",
-      "cell_type": "input",
-      "returns": [
-        0
-      ],
-      "position": {
-        "x": 100,
-        "y": 100
-      },
-      "label": "Sample",
-      "type": "text",
-      "value": ""
-    },
-    {
-      "id": "another",
-      "cell_type": "input",
-      "returns": [
-        0
-      ],
-      "position": {
-        "x": 100,
-        "y": 100
-      },
-      "label": "another",
-      "type": "text",
-      "value": ""
-    },
-    {
-      "id": "test",
-      "cell_type": "input",
-      "returns": [
-        0
-      ],
-      "position": {
-        "x": 100,
-        "y": 100
-      },
-      "label": "test",
-      "type": "text",
-      "value": ""
     }
   ],
   "links": [

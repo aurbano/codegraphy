@@ -1,14 +1,20 @@
 import {
+  type BaseEvent,
+  type BaseEventProxy,
   type DefaultLinkModel,
   type DefaultPortModel,
   DiagramModel,
 } from '@projectstorm/react-diagrams';
 
-import type { GraphModel } from '../../models';
-import { CodeNodeModel } from './Node/CodeNodeModel';
-import { CELL_COLORS } from './types';
+import type { GraphModel } from '../../../models';
+import { CodeNodeModel } from '../Node/CodeNodeModel';
+import { CELL_COLORS } from '../types';
+import modelToGraph from './modelToGraph';
 
-const calculateModel = (codeGraph: GraphModel): DiagramModel => {
+const graphToModel = (
+  codeGraph: GraphModel,
+  onUpdateGraph: (newGraph: GraphModel) => void,
+): DiagramModel => {
   const model = new DiagramModel();
 
   codeGraph.cells.forEach((cell) => {
@@ -44,7 +50,17 @@ const calculateModel = (codeGraph: GraphModel): DiagramModel => {
     model.addLink(modelLink);
   });
 
+  model.registerListener({
+    eventDidFire: (event: BaseEvent) => {
+      const eventProxy = event as BaseEventProxy;
+
+      if (eventProxy.function === 'nodesUpdated') {
+        onUpdateGraph(modelToGraph(codeGraph, model));
+      }
+    },
+  });
+
   return model;
 };
 
-export default calculateModel;
+export default graphToModel;

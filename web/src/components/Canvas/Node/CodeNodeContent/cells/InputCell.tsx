@@ -20,10 +20,11 @@ const InputCell = ({ cell }: InputCellProps) => {
           value={cell.value}
           placeholder="Input..."
           onKeyDown={(e) => e.stopPropagation()}
+          onChange={() => {}}
         />
       </FormControl>
     </Box>
   );
-}
+};
 
 export default InputCell;

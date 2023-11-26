@@ -6,25 +6,26 @@ import { useEffect, useMemo } from 'react';
 
 import type { GraphModel } from '../../models';
 import CodeNodeFactory from './Node/CodeNodeFactory';
-import calculateModel from './util';
+import graphToModel from './util/graphToModel';
 
 export interface CanvasProps {
   codeGraph: GraphModel;
+  onUpateGraph: (graph: GraphModel) => void;
 }
 
-const Canvas = ({ codeGraph }: CanvasProps) => {
+const Canvas = ({ codeGraph, onUpateGraph }: CanvasProps) => {
   const engine = useMemo(() => {
     const newEngine = createEngine();
     newEngine.getNodeFactories().registerFactory(new CodeNodeFactory());
-    newEngine.setModel(calculateModel(codeGraph));
+    newEngine.setModel(graphToModel(codeGraph, onUpateGraph));
 
     return newEngine;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    engine.setModel(calculateModel(codeGraph));
-  }, [codeGraph, engine]);
+    engine.setModel(graphToModel(codeGraph, onUpateGraph));
+  }, [codeGraph, engine, onUpateGraph]);
 
   return <CanvasWidget className="diagram-container" engine={engine} />;
 };

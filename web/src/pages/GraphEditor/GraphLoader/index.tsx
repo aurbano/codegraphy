@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useReadGraphApiGraphsGet, useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
 import CenterLoader from '../../../components/CenterLoader';
+import type { GraphModel } from '../../../models';
 import GraphHeader from './GraphHeader';
 
 export interface GraphLoaderProps {
@@ -38,11 +39,20 @@ const GraphLoader = ({
 
   const updateMutation = useUpdateGraphApiGraphsPut({
     mutation: {
-      onSuccess: (data) => {
+      onMutate: (data) => {
         queryClient.setQueryData(['graphs', graphPath], data);
       },
     },
   });
+
+  const onUpdateGraph = (newGraph: GraphModel) => {
+    updateMutation.mutate({
+      data: newGraph,
+      params: {
+        f: graphPath,
+      },
+    });
+  };
 
   if (isLoading) {
     return <CenterLoader label="Loading graph..." />;
@@ -71,17 +81,10 @@ const GraphLoader = ({
         toggleHeaderCollapsed={toggleHeaderCollapsed}
         isAddingCell={updateMutation.isPending}
         onOpenGraph={onOpenGraph}
-        onUpdateGraph={(newGraph) =>
-          updateMutation.mutate({
-            data: newGraph,
-            params: {
-              f: graphPath,
-            },
-          })
-        }
+        onUpdateGraph={onUpdateGraph}
       />
 
-      <Canvas codeGraph={codeGraph} />
+      <Canvas codeGraph={codeGraph} onUpateGraph={onUpdateGraph} />
     </>
   );
 };
