@@ -33,6 +33,12 @@ const theme = extendTheme({
     input: baseTheme.colors.green,
     code: baseTheme.colors.blue,
     port: baseTheme.colors.blue,
+
+    // Custom colors
+    headerBgLight: '#fafafa',
+    headerBgDark: '#283e59',
+    headerBorderLight: '#ddd',
+    headerBorderDark: '#3c5067',
   },
 
   components: {

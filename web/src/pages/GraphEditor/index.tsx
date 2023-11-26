@@ -12,7 +12,7 @@ function App() {
       <Header graphPath={graphPath} onOpenGraph={setGraphPath} />
 
       <Box flexGrow={1} h="100%" position="relative">
-        <GraphLoader graphPath={graphPath} />
+        <GraphLoader graphPath={graphPath} onOpenGraph={setGraphPath} />
       </Box>
     </Flex>
   );

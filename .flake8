@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 150
+extend-ignore = E203
+
+exclude = ^web/,
+    ^example_graphs/
+
+kwargs-ignore-function-pattern-extend = replace|assert*|NewType

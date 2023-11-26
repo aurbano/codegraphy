@@ -14,8 +14,8 @@ import {
 import { useState } from 'react';
 import { FaFile } from 'react-icons/fa';
 
-import InlineIcon from '../../components/InlineIcon';
-import getKeyboardCommand from '../../util/getKeyboardCommand';
+import InlineIcon from '../../../../components/InlineIcon';
+import getKeyboardCommand from '../../../../util/getKeyboardCommand';
 
 interface OpenGraphProps {
   onOpenGraph: (graphPath: string) => void;

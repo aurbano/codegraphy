@@ -1,14 +1,16 @@
 import { Alert, AlertDescription, AlertIcon, Container } from '@chakra-ui/react';
 
-import { useReadGraphApiGraphsGet } from '../api';
-import Canvas from '../components/Canvas';
-import CenterLoader from '../components/CenterLoader';
+import { useReadGraphApiGraphsGet } from '../../../api';
+import Canvas from '../../../components/Canvas';
+import CenterLoader from '../../../components/CenterLoader';
+import GraphHeader from './GraphHeader';
 
 export interface GraphLoaderProps {
   graphPath: string;
+  onOpenGraph: (graphPath: string) => void;
 }
 
-function GraphLoader({ graphPath }: GraphLoaderProps) {
+function GraphLoader({ graphPath, onOpenGraph }: GraphLoaderProps) {
   const {
     isLoading,
     data: response,
@@ -43,7 +45,12 @@ function GraphLoader({ graphPath }: GraphLoaderProps) {
 
   const codeGraph = response.data;
 
-  return <Canvas codeGraph={codeGraph} />;
+  return (
+    <>
+      <GraphHeader graph={codeGraph} onOpenGraph={onOpenGraph} onUpdateGraph={() => {}} />
+      <Canvas codeGraph={codeGraph} />
+    </>
+  );
 }
 
 export default GraphLoader;
