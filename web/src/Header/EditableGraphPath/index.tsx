@@ -13,7 +13,7 @@ function EditableGraphPath({ graphPath, onOpenGraph }: EditableGraphPathProps) {
   const [isEditing, { toggle }] = useBoolean(false);
 
   const onStopEditing = () => {
-    if (newGraphPath.replace(" ", "").length > 0) {
+    if (newGraphPath.replace(' ', '').length > 0) {
       onOpenGraph(newGraphPath);
     } else {
       setNewGraphPath(graphPath);
@@ -28,7 +28,7 @@ function EditableGraphPath({ graphPath, onOpenGraph }: EditableGraphPathProps) {
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         type="text"
-        placeholder='Enter path to a graph...'
+        placeholder="Enter path to a graph..."
         value={newGraphPath}
         onChange={(e) => setNewGraphPath(e.target.value)}
         onBlur={onStopEditing}
@@ -37,11 +37,14 @@ function EditableGraphPath({ graphPath, onOpenGraph }: EditableGraphPathProps) {
   }
 
   const isTruncated = graphPath.length > MAX_DISPLAY_LENGTH;
-  const displayGraphPath = isTruncated ? graphPath.slice(graphPath.length - MAX_DISPLAY_LENGTH) : graphPath;
+  const displayGraphPath = isTruncated
+    ? graphPath.slice(graphPath.length - MAX_DISPLAY_LENGTH)
+    : graphPath;
 
   return (
     <Heading size="md" fontWeight="normal" onClick={toggle}>
-      {isTruncated && '...'}{displayGraphPath}
+      {isTruncated && '...'}
+      {displayGraphPath}
     </Heading>
   );
 }

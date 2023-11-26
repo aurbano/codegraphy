@@ -13,7 +13,7 @@ export default defineConfig({
       client: 'react-query',
       mode: 'split',
       clean: ['!orval.config.ts'],
-      mock: true,
+      // mock: true,
       prettier: true,
     },
   },

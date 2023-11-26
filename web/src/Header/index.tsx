@@ -4,7 +4,6 @@ import {
   ButtonGroup,
   Container,
   Flex,
-  Heading,
   Menu,
   MenuButton,
   MenuDivider,
@@ -14,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { AiFillCode } from 'react-icons/ai';
-import { FaChevronDown, FaCloud, FaFile, FaFileMedical, FaSave } from 'react-icons/fa';
+import { FaChevronDown, FaCloud, FaFileMedical, FaSave } from 'react-icons/fa';
 import { IoArrowRedo, IoArrowUndo, IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
 
