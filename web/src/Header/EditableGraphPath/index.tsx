@@ -1,6 +1,8 @@
 import { Heading, Input, useBoolean } from '@chakra-ui/react';
 import { useState } from 'react';
 
+const MAX_DISPLAY_LENGTH = 30;
+
 export interface EditableGraphPathProps {
   graphPath: string;
   onOpenGraph: (graphPath: string) => void;
@@ -34,9 +36,12 @@ function EditableGraphPath({ graphPath, onOpenGraph }: EditableGraphPathProps) {
     );
   }
 
+  const isTruncated = graphPath.length > MAX_DISPLAY_LENGTH;
+  const displayGraphPath = isTruncated ? graphPath.slice(graphPath.length - MAX_DISPLAY_LENGTH) : graphPath;
+
   return (
     <Heading size="md" fontWeight="normal" onClick={toggle}>
-      {graphPath}
+      {isTruncated && '...'}{displayGraphPath}
     </Heading>
   );
 }

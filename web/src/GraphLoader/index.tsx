@@ -19,7 +19,7 @@ function GraphLoader({ graphPath }: GraphLoaderProps) {
     },
     {
       query: {
-        queryKey: ['graphs'],
+        queryKey: ['graphs', graphPath],
       },
     },
   );
