@@ -4,12 +4,10 @@ export type InlineIconProps = {
   icon: JSX.Element;
 } & BoxProps;
 
-function InlineIcon({ icon, ...rest }: InlineIconProps) {
-  return (
+const InlineIcon = ({ icon, ...rest }: InlineIconProps) => (
     <Box display="inline-block" position="relative" top="0.1rem" mr={1} {...rest}>
       {icon}
     </Box>
-  );
-}
+  )
 
 export default InlineIcon;

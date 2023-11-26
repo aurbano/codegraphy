@@ -14,7 +14,8 @@ import {
   Select,
   useBoolean,
 } from '@chakra-ui/react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import { LuTextCursorInput } from 'react-icons/lu';
 
 import type { InputCellModel, InputCellModelType } from '../../../../../api/schema';
@@ -24,7 +25,7 @@ interface AddInputProps {
   onAddCell: (cell: InputCellModel) => void;
 }
 
-function AddInput({ onAddCell }: AddInputProps) {
+const AddInput = ({ onAddCell }: AddInputProps) => {
   const [isOpen, { on, off }] = useBoolean(false);
   const [label, setLabel] = useState('');
   const [type, setType] = useState<InputCellModelType>();
@@ -90,8 +91,8 @@ function AddInput({ onAddCell }: AddInputProps) {
               Cancel
             </Button>
 
-            <Button colorScheme="primary" onClick={onCreateNewInputCell}>
-              Add Cell
+            <Button colorScheme="input" leftIcon={<FaPlus />} onClick={onCreateNewInputCell}>
+              Add Input
             </Button>
           </ModalFooter>
         </ModalContent>

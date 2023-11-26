@@ -6,7 +6,7 @@ export interface CodeNodeContentProps {
   cell: GraphModelCellsItem;
 }
 
-function CodeNodeContent({ cell }: CodeNodeContentProps) {
+const CodeNodeContent = ({ cell }: CodeNodeContentProps) => {
   if (cell.cell_type === 'code') {
     return <CodeCell cell={cell} />;
   }

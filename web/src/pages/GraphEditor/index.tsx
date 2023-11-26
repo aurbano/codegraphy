@@ -1,21 +1,31 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, useBoolean } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import GraphLoader from './GraphLoader';
 import Header from './Header';
 
-function App() {
+const App = () => {
+  const [isHeaderCollapsed, { toggle: toggleHeaderCollapsed }] = useBoolean(false);
   const [graphPath, setGraphPath] = useState('example_graphs/sample');
 
   return (
     <Flex direction="column" h="100vh">
-      <Header graphPath={graphPath} onOpenGraph={setGraphPath} />
+      <Header
+        isHeaderCollapsed={isHeaderCollapsed}
+        graphPath={graphPath}
+        onOpenGraph={setGraphPath}
+      />
 
       <Box flexGrow={1} h="100%" position="relative">
-        <GraphLoader graphPath={graphPath} onOpenGraph={setGraphPath} />
+        <GraphLoader
+          graphPath={graphPath}
+          isHeaderCollapsed={isHeaderCollapsed}
+          toggleHeaderCollapsed={toggleHeaderCollapsed}
+          onOpenGraph={setGraphPath}
+        />
       </Box>
     </Flex>
   );
-}
+};
 
 export default App;

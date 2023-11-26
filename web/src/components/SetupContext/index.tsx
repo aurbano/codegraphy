@@ -8,15 +8,13 @@ export interface SetupContextProps {
   children: React.ReactNode;
 }
 
-function SetupContext({ children }: SetupContextProps) {
-  return (
+const SetupContext = ({ children }: SetupContextProps) => (
     <ChakraProvider resetCSS theme={theme}>
       <QueryContext>
         <ColorModeScript initialColorMode={initialColorMode} />
         {children}
       </QueryContext>
     </ChakraProvider>
-  );
-}
+  )
 
 export default SetupContext;

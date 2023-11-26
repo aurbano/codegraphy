@@ -19,7 +19,7 @@ export interface NodeProps {
   engine: DiagramEngine;
 }
 
-function CodeNodeWidget({ node, engine }: NodeProps) {
+const CodeNodeWidget = ({ node, engine }: NodeProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const ports = node.getPorts();

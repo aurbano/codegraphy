@@ -8,7 +8,7 @@ export interface OutputProps {
   cell: CodeCellModel;
 }
 
-function Output({ cell }: OutputProps) {
+const Output = ({ cell }: OutputProps) => {
   const { outputs, execution_time: executionTime } = cell;
 
   if (outputs.length === 0) {

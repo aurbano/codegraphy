@@ -11,8 +11,7 @@ export interface PortsProps {
   engine: DiagramEngine;
 }
 
-function Ports({ ports, engine, type }: PortsProps) {
-  return (
+const Ports = ({ ports, engine, type }: PortsProps) => (
     <Flex
       direction="column"
       justifyContent="space-evenly"
@@ -48,7 +47,6 @@ function Ports({ ports, engine, type }: PortsProps) {
           );
         })}
     </Flex>
-  );
-}
+  )
 
 export default Ports;

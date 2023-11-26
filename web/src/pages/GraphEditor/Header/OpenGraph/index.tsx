@@ -21,7 +21,7 @@ interface OpenGraphProps {
   onOpenGraph: (graphPath: string) => void;
 }
 
-function OpenGraph({ onOpenGraph }: OpenGraphProps) {
+const OpenGraph = ({ onOpenGraph }: OpenGraphProps) => {
   const [isOpen, { on, off }] = useBoolean(false);
   const [graphPath, setGraphPath] = useState<string>();
 

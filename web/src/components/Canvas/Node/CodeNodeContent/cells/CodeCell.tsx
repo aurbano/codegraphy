@@ -18,7 +18,7 @@ export interface CodeCellProps {
   cell: CodeCellModel;
 }
 
-function CodeCell({ cell }: CodeCellProps) {
+const CodeCell = ({ cell }: CodeCellProps) => {
   const isPython = cell.kernel === 'python3.9';
 
   return (

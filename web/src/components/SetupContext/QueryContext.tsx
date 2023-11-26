@@ -5,7 +5,7 @@ interface QueryContextProps {
   children: React.ReactNode;
 }
 
-function QueryContext({ children }: QueryContextProps) {
+const QueryContext = ({ children }: QueryContextProps) => {
   const queryClient = useMemo(
     () =>
       new QueryClient({

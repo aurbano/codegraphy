@@ -8,7 +8,7 @@ interface PortProps {
   anchor: 'right' | 'left';
 }
 
-function Port({ portModel, engine, name, anchor }: PortProps) {
+const Port = ({ portModel, engine, name, anchor }: PortProps) => {
   const isConnected = Object.keys(portModel.getLinks()).length > 0;
   const hasName = typeof name === 'string' && name.length > 0;
 

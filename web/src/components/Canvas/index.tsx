@@ -21,7 +21,7 @@ export interface CanvasProps {
   codeGraph: GraphModel;
 }
 
-function Canvas({ codeGraph }: CanvasProps) {
+const Canvas = ({ codeGraph }: CanvasProps) => {
   const engine = useMemo(() => {
     const newEngine = createEngine();
     const model = new DiagramModel();

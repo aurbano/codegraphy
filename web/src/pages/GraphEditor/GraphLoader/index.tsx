@@ -6,11 +6,18 @@ import CenterLoader from '../../../components/CenterLoader';
 import GraphHeader from './GraphHeader';
 
 export interface GraphLoaderProps {
+  isHeaderCollapsed: boolean;
   graphPath: string;
   onOpenGraph: (graphPath: string) => void;
+  toggleHeaderCollapsed: () => void;
 }
 
-function GraphLoader({ graphPath, onOpenGraph }: GraphLoaderProps) {
+const GraphLoader = ({
+  isHeaderCollapsed,
+  graphPath,
+  onOpenGraph,
+  toggleHeaderCollapsed,
+}: GraphLoaderProps) => {
   const {
     isLoading,
     data: response,
@@ -47,7 +54,13 @@ function GraphLoader({ graphPath, onOpenGraph }: GraphLoaderProps) {
 
   return (
     <>
-      <GraphHeader graph={codeGraph} onOpenGraph={onOpenGraph} onUpdateGraph={() => {}} />
+      <GraphHeader
+        graph={codeGraph}
+        isHeaderCollapsed={isHeaderCollapsed}
+        toggleHeaderCollapsed={toggleHeaderCollapsed}
+        onOpenGraph={onOpenGraph}
+        onUpdateGraph={() => {}}
+      />
       <Canvas codeGraph={codeGraph} />
     </>
   );

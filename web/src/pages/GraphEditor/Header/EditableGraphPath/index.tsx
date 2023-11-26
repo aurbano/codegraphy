@@ -8,7 +8,7 @@ export interface EditableGraphPathProps {
   onOpenGraph: (graphPath: string) => void;
 }
 
-function EditableGraphPath({ graphPath, onOpenGraph }: EditableGraphPathProps) {
+const EditableGraphPath = ({ graphPath, onOpenGraph }: EditableGraphPathProps) => {
   const [newGraphPath, setNewGraphPath] = useState(graphPath);
   const [isEditing, { toggle }] = useBoolean(false);
 

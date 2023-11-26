@@ -6,14 +6,12 @@ interface CenterLoaderProps {
   label?: string;
 }
 
-function CenterLoader({ label = 'Loading...' }: CenterLoaderProps) {
-  return (
+const CenterLoader = ({ label = 'Loading...' }: CenterLoaderProps) => (
     <Flex h="100%" direction="column" justifyContent="center">
       <Box textAlign="center" fontSize="lg">
         <InlineIcon top="0.5em" icon={<Spinner size="lg" />} mr={2} /> {label}
       </Box>
     </Flex>
-  );
-}
+  )
 
 export default CenterLoader;

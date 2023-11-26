@@ -7,7 +7,7 @@ export interface InputCellProps {
   cell: InputCellModel;
 }
 
-function InputCell({ cell }: InputCellProps) {
+const InputCell = ({ cell }: InputCellProps) => {
   const isDark = useIsDark();
 
   return (
