@@ -7,6 +7,7 @@ import { IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
 
 import CodeNodeContent from './CodeNodeContent';
+import type { CellProps } from './CodeNodeFactory';
 import type { CodeNodeModel } from './CodeNodeModel';
 import Output from './Output';
 import Ports from './Ports';
@@ -17,9 +18,10 @@ const PORTS_WIDTH_OUT = '10px';
 export interface NodeProps {
   node: CodeNodeModel;
   engine: DiagramEngine;
+  cellProps: CellProps;
 }
 
-const CodeNodeWidget = ({ node, engine }: NodeProps) => {
+const CodeNodeWidget = ({ node, engine, cellProps }: NodeProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const ports = node.getPorts();
@@ -105,7 +107,7 @@ const CodeNodeWidget = ({ node, engine }: NodeProps) => {
 
           {!isCollapsed ? (
             <Box flexGrow={2}>
-              <CodeNodeContent cell={cell} />
+              <CodeNodeContent cell={cell} cellProps={cellProps} />
             </Box>
           ) : (
             <Box flexGrow={2} />

@@ -18,7 +18,7 @@ export interface CanvasProps {
 const Canvas = ({ codeGraph, onUpateGraph, onSelectNode }: CanvasProps) => {
   const engine = useMemo(() => {
     const newEngine = createEngine();
-    newEngine.getNodeFactories().registerFactory(new CodeNodeFactory());
+    newEngine.getNodeFactories().registerFactory(new CodeNodeFactory({ onUpdateValue: () => {} }));
     newEngine.setModel(graphToModel(codeGraph, onUpateGraph, onSelectNode));
 
     return newEngine;

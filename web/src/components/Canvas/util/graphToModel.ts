@@ -58,10 +58,7 @@ const graphToModel = (
       eventDidFire: (event: BaseEvent) => {
         const eventProxy = event as BaseEventProxy;
 
-        console.log('NODE EVENT', eventProxy.function);
-
         if (eventProxy.function === GRAPH_EVENTS.node.selectionChanged) {
-          console.log('selected', eventProxy);
           if ((eventProxy as SelectionChangedEvent).isSelected) {
             onSelectNode(node as CodeNodeModel);
           } else {
@@ -77,8 +74,6 @@ const graphToModel = (
   model.registerListener({
     eventDidFire: (event: BaseEvent) => {
       const eventProxy = event as BaseEventProxy;
-
-      console.log('MODEL EVENT', eventProxy.function);
 
       if (eventProxy.function === GRAPH_EVENTS.diagram.nodesUpdated) {
         onUpdateGraph(modelToGraph(codeGraph, model));
