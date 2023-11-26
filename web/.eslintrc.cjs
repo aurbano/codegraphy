@@ -13,6 +13,7 @@ module.exports = {
     'plugin:sonarjs/recommended',
   ],
   rules: {
+    camelcase: 'off',
     // Using unused-imports/no-unused-vars as it's auto-fixable
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',

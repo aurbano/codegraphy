@@ -22,19 +22,16 @@ import type { InputCellModel, InputCellModelType } from '../../../../../api/sche
 import InlineIcon from '../../../../../components/InlineIcon';
 
 interface AddInputProps {
+  isAddingCell: boolean;
   onAddCell: (cell: InputCellModel) => void;
 }
 
-const AddInput = ({ onAddCell }: AddInputProps) => {
+const AddInput = ({ isAddingCell, onAddCell }: AddInputProps) => {
   const [isOpen, { on, off }] = useBoolean(false);
   const [label, setLabel] = useState('');
-  const [type, setType] = useState<InputCellModelType>();
+  const [type, setType] = useState<InputCellModelType>('text');
 
   const onCreateNewInputCell = () => {
-    if (!type) {
-      return;
-    }
-
     const inputCell: InputCellModel = {
       id: label, // add a uuid or something here
       label,
@@ -91,7 +88,12 @@ const AddInput = ({ onAddCell }: AddInputProps) => {
               Cancel
             </Button>
 
-            <Button colorScheme="input" leftIcon={<FaPlus />} onClick={onCreateNewInputCell}>
+            <Button
+              colorScheme="input"
+              leftIcon={<FaPlus />}
+              isLoading={isAddingCell}
+              onClick={onCreateNewInputCell}
+            >
               Add Input
             </Button>
           </ModalFooter>
@@ -99,6 +101,6 @@ const AddInput = ({ onAddCell }: AddInputProps) => {
       </Modal>
     </>
   );
-}
+};
 
 export default AddInput;

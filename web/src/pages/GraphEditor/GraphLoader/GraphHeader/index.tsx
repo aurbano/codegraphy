@@ -17,8 +17,8 @@ import { AiFillCode } from 'react-icons/ai';
 import { FaChevronDown, FaChevronUp, FaFileMedical, FaSave } from 'react-icons/fa';
 import { IoArrowRedo, IoArrowUndo, IoPlayOutline } from 'react-icons/io5';
 
-import type { GraphModel, GraphModelCellsItem } from '../../../../api/schema';
 import ToggleTheme from '../../../../components/ChangeTheme';
+import type { GraphCell, GraphModel } from '../../../../models';
 import copyObject from '../../../../util/copyObject';
 import getKeyboardCommand from '../../../../util/getKeyboardCommand';
 import useIsDark from '../../../../util/hooks/useIsDark';
@@ -29,6 +29,7 @@ import AddInput from './AddInput';
 export interface GraphHeaderProps {
   graph: GraphModel;
   isHeaderCollapsed: boolean;
+  isAddingCell: boolean;
   onOpenGraph: (graphPath: string) => void;
   onUpdateGraph: (newGraph: GraphModel) => void;
   toggleHeaderCollapsed: () => void;
@@ -37,6 +38,7 @@ export interface GraphHeaderProps {
 const GraphHeader = ({
   graph,
   isHeaderCollapsed,
+  isAddingCell,
   onOpenGraph,
   onUpdateGraph,
   toggleHeaderCollapsed,
@@ -44,13 +46,11 @@ const GraphHeader = ({
   const isDark = useIsDark();
   const bg = useColorModeValue('headerBgLight', 'headerBgDark');
 
-  const onAddCell = (newCell: GraphModelCellsItem) => {
-    const newGraph = copyObject(graph);
-    // TODO: Introduce mutable_ prefix
-    // eslint-disable-next-line functional/immutable-data
-    newGraph.cells.push(newCell);
+  const onAddCell = (newCell: GraphCell) => {
+    const mutable_graph = copyObject(graph);
+    mutable_graph.cells.push(newCell);
 
-    onUpdateGraph(newGraph);
+    onUpdateGraph(mutable_graph);
   };
 
   return (
@@ -100,7 +100,7 @@ const GraphHeader = ({
               </MenuList>
             </Menu>
 
-            <AddInput onAddCell={onAddCell} />
+            <AddInput isAddingCell={isAddingCell} onAddCell={onAddCell} />
 
             <Button leftIcon={<AiFillCode />} colorScheme="code" isDisabled>
               Add Code
@@ -132,6 +132,6 @@ const GraphHeader = ({
       </Container>
     </Box>
   );
-}
+};
 
 export default GraphHeader;

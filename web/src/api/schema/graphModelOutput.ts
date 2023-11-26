@@ -4,12 +4,12 @@
  * FastAPI
  * OpenAPI spec version: 0.1.0
  */
-import type { GraphModelCellsItem } from './graphModelCellsItem';
+import type { GraphModelOutputCellsItem } from './graphModelOutputCellsItem';
 import type { LinkModel } from './linkModel';
 import type { MetadataModel } from './metadataModel';
 
-export interface GraphModel {
-  cells: GraphModelCellsItem[];
+export interface GraphModelOutput {
+  cells: GraphModelOutputCellsItem[];
   links: LinkModel[];
   metadata: MetadataModel;
 }

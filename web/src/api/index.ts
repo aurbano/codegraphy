@@ -4,10 +4,12 @@
  * FastAPI
  * OpenAPI spec version: 0.1.0
  */
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import type {
+  MutationFunction,
   QueryFunction,
   QueryKey,
+  UseMutationOptions,
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
@@ -15,9 +17,11 @@ import * as axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import type {
   ApiRoot,
-  GraphModel,
+  GraphModelInput,
+  GraphModelOutput,
   HTTPValidationError,
   ReadGraphApiGraphsGetParams,
+  UpdateGraphApiGraphsPutParams,
 } from './schema';
 
 /**
@@ -80,7 +84,7 @@ export const useReadRootApiGet = <
 export const readGraphApiGraphsGet = (
   params: ReadGraphApiGraphsGetParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GraphModel>> => {
+): Promise<AxiosResponse<GraphModelOutput>> => {
   return axios.default.get(`http://127.0.0.1:8000/api/graphs/`, {
     ...options,
     params: { ...params, ...options?.params },
@@ -144,4 +148,75 @@ export const useReadGraphApiGraphsGet = <
   query.queryKey = queryOptions.queryKey;
 
   return query;
+};
+
+/**
+ * @summary Update Graph
+ */
+export const updateGraphApiGraphsPut = (
+  graphModelInput: GraphModelInput,
+  params: UpdateGraphApiGraphsPutParams,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<GraphModelOutput>> => {
+  return axios.default.put(`http://127.0.0.1:8000/api/graphs/`, graphModelInput, {
+    ...options,
+    params: { ...params, ...options?.params },
+  });
+};
+
+export const getUpdateGraphApiGraphsPutMutationOptions = <
+  TError = AxiosError<HTTPValidationError>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateGraphApiGraphsPut>>,
+    TError,
+    { data: GraphModelInput; params: UpdateGraphApiGraphsPutParams },
+    TContext
+  >;
+  axios?: AxiosRequestConfig;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof updateGraphApiGraphsPut>>,
+  TError,
+  { data: GraphModelInput; params: UpdateGraphApiGraphsPutParams },
+  TContext
+> => {
+  const { mutation: mutationOptions, axios: axiosOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateGraphApiGraphsPut>>,
+    { data: GraphModelInput; params: UpdateGraphApiGraphsPutParams }
+  > = (props) => {
+    const { data, params } = props ?? {};
+
+    return updateGraphApiGraphsPut(data, params, axiosOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type UpdateGraphApiGraphsPutMutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateGraphApiGraphsPut>>
+>;
+export type UpdateGraphApiGraphsPutMutationBody = GraphModelInput;
+export type UpdateGraphApiGraphsPutMutationError = AxiosError<HTTPValidationError>;
+
+/**
+ * @summary Update Graph
+ */
+export const useUpdateGraphApiGraphsPut = <
+  TError = AxiosError<HTTPValidationError>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateGraphApiGraphsPut>>,
+    TError,
+    { data: GraphModelInput; params: UpdateGraphApiGraphsPutParams },
+    TContext
+  >;
+  axios?: AxiosRequestConfig;
+}) => {
+  const mutationOptions = getUpdateGraphApiGraphsPutMutationOptions(options);
+
+  return useMutation(mutationOptions);
 };

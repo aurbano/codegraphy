@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertIcon, Container } from '@chakra-ui/react';
+import { useQueryClient } from '@tanstack/react-query';
 
-import { useReadGraphApiGraphsGet } from '../../../api';
+import { useReadGraphApiGraphsGet, useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
 import CenterLoader from '../../../components/CenterLoader';
 import GraphHeader from './GraphHeader';
@@ -18,6 +19,8 @@ const GraphLoader = ({
   onOpenGraph,
   toggleHeaderCollapsed,
 }: GraphLoaderProps) => {
+  const queryClient = useQueryClient();
+
   const {
     isLoading,
     data: response,
@@ -32,6 +35,14 @@ const GraphLoader = ({
       },
     },
   );
+
+  const updateMutation = useUpdateGraphApiGraphsPut({
+    mutation: {
+      onSuccess: (data) => {
+        queryClient.setQueryData(['graphs', graphPath], data);
+      },
+    },
+  });
 
   if (isLoading) {
     return <CenterLoader label="Loading graph..." />;
@@ -58,12 +69,21 @@ const GraphLoader = ({
         graph={codeGraph}
         isHeaderCollapsed={isHeaderCollapsed}
         toggleHeaderCollapsed={toggleHeaderCollapsed}
+        isAddingCell={updateMutation.isPending}
         onOpenGraph={onOpenGraph}
-        onUpdateGraph={() => {}}
+        onUpdateGraph={(newGraph) =>
+          updateMutation.mutate({
+            data: newGraph,
+            params: {
+              f: graphPath,
+            },
+          })
+        }
       />
+
       <Canvas codeGraph={codeGraph} />
     </>
   );
-}
+};
 
 export default GraphLoader;

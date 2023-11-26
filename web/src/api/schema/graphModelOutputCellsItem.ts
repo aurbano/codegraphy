@@ -7,4 +7,4 @@
 import type { CodeCellModel } from './codeCellModel';
 import type { InputCellModel } from './inputCellModel';
 
-export type GraphModelCellsItem = CodeCellModel | InputCellModel;
+export type GraphModelOutputCellsItem = CodeCellModel | InputCellModel;

@@ -1,4 +1,4 @@
-from typing import Literal, TypeAlias, Union
+from typing import Literal, Union
 from pydantic import BaseModel
 
 
@@ -14,7 +14,6 @@ class MetadataModel(BaseModel):
     graph_version_minor: int
 
 
-CellType: TypeAlias = Literal["input", "code"]
 PortId = Union[str, int]
 
 
@@ -23,14 +22,14 @@ class CellPosition(BaseModel):
     y: int
 
 
-class CellModel(BaseModel):
+class BaseCellModel(BaseModel):
     id: str
-    cell_type: CellType
+    cell_type: str
     returns: list[PortId]
     position: CellPosition
 
 
-class CodeCellModel(CellModel):
+class CodeCellModel(BaseCellModel):
     cell_type: Literal["code"]
     file_name: str
     kernel: str
@@ -40,11 +39,14 @@ class CodeCellModel(CellModel):
     outputs: list[str]
 
 
-class InputCellModel(CellModel):
+class InputCellModel(BaseCellModel):
     cell_type: Literal["input"]
     label: str
     type: Literal["text", "number", "email"]
-    value: Union[str, int]
+    value: str | int
+
+
+CellModel = Union[CodeCellModel, InputCellModel]
 
 
 class LinkItemModel(BaseModel):
@@ -59,5 +61,5 @@ class LinkModel(BaseModel):
 
 class GraphModel(BaseModel):
     metadata: MetadataModel
-    cells: list[Union[CodeCellModel, InputCellModel]]
+    cells: list[CellModel]
     links: list[LinkModel]

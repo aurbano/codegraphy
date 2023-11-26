@@ -32,10 +32,10 @@
   "devDependencies": {
     "@babel/core": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
-    "@types/babel__core": "^7",
-    "@types/lodash": "^4",
+    "@types/babel__core": "^7.20.5",
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.38",
-    "@types/react-dom": "^18.2.16",
+    "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "@vitejs/plugin-react": "^4.2.0",
@@ -53,7 +53,7 @@
     "orval": "^6.20.0",
     "prettier": "^3.1.0",
     "typescript": "5.2.2",
-    "vite": "^5.0.0"
+    "vite": "^5.0.2"
   },
   "packageManager": "yarn@4.0.2"
 }

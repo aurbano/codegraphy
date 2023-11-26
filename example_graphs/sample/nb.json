@@ -19,56 +19,125 @@
     {
       "id": "num1",
       "cell_type": "input",
-      "label": "Number 1",
-      "type": "number",
-      "value": 10,
-      "returns": [0],
+      "returns": [
+        0
+      ],
       "position": {
         "x": 200,
         "y": 100
-      }
+      },
+      "label": "Number 1",
+      "type": "number",
+      "value": 10
     },
     {
       "id": "num2",
       "cell_type": "input",
-      "label": "Number 2",
-      "type": "number",
-      "value": 2,
-      "returns": [0],
+      "returns": [
+        0
+      ],
       "position": {
         "x": 200,
         "y": 300
-      }
+      },
+      "label": "Number 2",
+      "type": "number",
+      "value": 2
     },
     {
       "id": "add",
-      "file_name": "add.py",
       "cell_type": "code",
-      "kernel": "python3.9",
-      "params": ["num1", "num2"],
-      "returns": [0],
-      "execution_count": 1,
-      "execution_time": 0.0,
-      "outputs": ["12"],
+      "returns": [
+        0
+      ],
       "position": {
         "x": 800,
         "y": 100
-      }
+      },
+      "file_name": "add.py",
+      "kernel": "python3.9",
+      "params": [
+        "num1",
+        "num2"
+      ],
+      "execution_count": 1,
+      "execution_time": 0.0,
+      "outputs": [
+        "12"
+      ]
     },
     {
       "id": "random",
-      "file_name": "random.ts",
       "cell_type": "code",
-      "kernel": "typescript4.2",
-      "params": [],
-      "returns": [0],
-      "execution_count": 0,
-      "execution_time": null,
-      "outputs": [],
+      "returns": [
+        0
+      ],
       "position": {
         "x": 200,
         "y": 500
-      }
+      },
+      "file_name": "random.ts",
+      "kernel": "typescript4.2",
+      "params": [],
+      "execution_count": 0,
+      "execution_time": null,
+      "outputs": []
+    },
+    {
+      "id": "sdf",
+      "cell_type": "input",
+      "returns": [
+        0
+      ],
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "label": "sdf",
+      "type": "text",
+      "value": ""
+    },
+    {
+      "id": "Sample",
+      "cell_type": "input",
+      "returns": [
+        0
+      ],
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "label": "Sample",
+      "type": "text",
+      "value": ""
+    },
+    {
+      "id": "another",
+      "cell_type": "input",
+      "returns": [
+        0
+      ],
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "label": "another",
+      "type": "text",
+      "value": ""
+    },
+    {
+      "id": "test",
+      "cell_type": "input",
+      "returns": [
+        0
+      ],
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "label": "test",
+      "type": "text",
+      "value": ""
     }
   ],
   "links": [
