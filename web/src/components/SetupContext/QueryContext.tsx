@@ -13,6 +13,7 @@ function QueryContext({ children }: QueryContextProps) {
           queries: {
             networkMode: 'always',
             staleTime: 1000 * 60 * 1,
+            retry: false,
           },
         },
       }),

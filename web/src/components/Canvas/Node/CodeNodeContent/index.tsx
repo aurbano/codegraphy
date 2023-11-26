@@ -1,4 +1,4 @@
-import type { GraphModelCellsItem } from '../../../api/schema';
+import type { GraphModelCellsItem } from '../../../../api/schema';
 import CodeCell from './cells/CodeCell';
 import InputCell from './cells/InputCell';
 

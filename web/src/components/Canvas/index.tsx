@@ -8,7 +8,7 @@ import createEngine, {
 } from '@projectstorm/react-diagrams';
 import { useMemo } from 'react';
 
-import type { GraphModel } from '../api/schema';
+import type { GraphModel } from '../../api/schema';
 import CodeNodeFactory from './Node/CodeNodeFactory';
 import { CodeNodeModel } from './Node/CodeNodeModel';
 

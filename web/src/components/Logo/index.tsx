@@ -6,8 +6,8 @@ import InlineIcon from '../InlineIcon';
 
 export type LogoProps = BoxProps;
 
-const borderColor = 'rgba(255,255,255,0.3)';
-const dividerColor = 'rgba(255,255,255,0.1)';
+const borderColor = 'rgba(255,255,255,0.1)';
+const dividerColor = 'rgba(255,255,255,0.05)';
 
 function Logo({ ...rest }: LogoProps) {
   const isDark = useIsDark();

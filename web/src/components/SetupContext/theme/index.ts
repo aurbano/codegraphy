@@ -16,7 +16,7 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       'html, body': {
-        background: mode('#ccc', '#1c2b3f')(props),
+        background: mode('#fafafa', '#1c2b3f')(props),
       },
     }),
   },

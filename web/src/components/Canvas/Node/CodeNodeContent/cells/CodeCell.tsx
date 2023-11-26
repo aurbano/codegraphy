@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { Editor } from '@monaco-editor/react';
 
-import type { CodeCellModel } from '../../../../api/schema';
+import type { CodeCellModel } from '../../../../../api/schema';
 
 const sampleContentPy = `def add(num1, num2):
   sum = num1 + num2

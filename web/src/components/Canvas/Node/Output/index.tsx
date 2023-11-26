@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import { FaCheck } from 'react-icons/fa';
 
-import type { CodeCellModel } from '../../../api/schema';
-import InlineIcon from '../../../components/InlineIcon';
+import type { CodeCellModel } from '../../../../api/schema';
+import InlineIcon from '../../../InlineIcon';
 
 export interface OutputProps {
   cell: CodeCellModel;
