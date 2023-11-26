@@ -9,11 +9,14 @@ import {
 import type { GraphModel } from '../../../models';
 import { CodeNodeModel } from '../Node/CodeNodeModel';
 import { CELL_COLORS } from '../types';
+import GRAPH_EVENTS from './events';
 import modelToGraph from './modelToGraph';
+import type { SelectionChangedEvent } from './types';
 
 const graphToModel = (
   codeGraph: GraphModel,
   onUpdateGraph: (newGraph: GraphModel) => void,
+  onSelectNode: (nodeModel?: CodeNodeModel) => void,
 ): DiagramModel => {
   const model = new DiagramModel();
 
@@ -50,11 +53,34 @@ const graphToModel = (
     model.addLink(modelLink);
   });
 
+  model.getNodes().forEach((node) => {
+    node.registerListener({
+      eventDidFire: (event: BaseEvent) => {
+        const eventProxy = event as BaseEventProxy;
+
+        console.log('NODE EVENT', eventProxy.function);
+
+        if (eventProxy.function === GRAPH_EVENTS.node.selectionChanged) {
+          console.log('selected', eventProxy);
+          if ((eventProxy as SelectionChangedEvent).isSelected) {
+            onSelectNode(node as CodeNodeModel);
+          } else {
+            onSelectNode();
+          }
+        }
+
+        return true;
+      },
+    });
+  });
+
   model.registerListener({
     eventDidFire: (event: BaseEvent) => {
       const eventProxy = event as BaseEventProxy;
 
-      if (eventProxy.function === 'nodesUpdated') {
+      console.log('MODEL EVENT', eventProxy.function);
+
+      if (eventProxy.function === GRAPH_EVENTS.diagram.nodesUpdated) {
         onUpdateGraph(modelToGraph(codeGraph, model));
       }
     },

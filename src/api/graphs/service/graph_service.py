@@ -4,6 +4,8 @@ from ..domain.graph import GraphModel
 
 
 class GraphService:
+    # TODO: Add a graph validator (outputs, params, links, repeated ids... )
+
     def read_graph(self, file_path: str) -> GraphModel:
         file_path = self._get_graph_file_path(file_path)
 

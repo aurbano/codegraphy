@@ -17,6 +17,10 @@ function getKeyboardCommand(command: string[]): string {
         return '⌃';
       }
 
+      if (cmd === 'del') {
+        return '⌫';
+      }
+
       return cmd;
     })
     .join(' ');

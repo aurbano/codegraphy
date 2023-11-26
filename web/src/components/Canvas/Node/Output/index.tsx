@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import { FaCheck } from 'react-icons/fa';
 
 import type { CodeCellModel } from '../../../../api/schema';
@@ -10,6 +10,8 @@ export interface OutputProps {
 
 const Output = ({ cell }: OutputProps) => {
   const { outputs, execution_time: executionTime } = cell;
+  const bg = useColorModeValue('muted.200', 'muted.900');
+  const borderColor = useColorModeValue('muted.300', 'transparent');
 
   if (outputs.length === 0) {
     return null;
@@ -18,7 +20,9 @@ const Output = ({ cell }: OutputProps) => {
   return (
     <Box
       position="relative"
-      bg="muted.900"
+      bg={bg}
+      border="solid 1px"
+      borderColor={borderColor}
       mt={4}
       rounded="sm"
       px={4}
@@ -50,6 +54,6 @@ const Output = ({ cell }: OutputProps) => {
       </Box>
     </Box>
   );
-}
+};
 
 export default Output;

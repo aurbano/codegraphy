@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { Editor } from '@monaco-editor/react';
 
 import type { CodeCellModel } from '../../../../../api/schema';
+import useIsDark from '../../../../../util/hooks/useIsDark';
 
 const sampleContentPy = `def add(num1, num2):
   sum = num1 + num2
@@ -19,6 +20,7 @@ export interface CodeCellProps {
 }
 
 const CodeCell = ({ cell }: CodeCellProps) => {
+  const isDark = useIsDark();
   const isPython = cell.kernel === 'python3.9';
 
   return (
@@ -26,7 +28,7 @@ const CodeCell = ({ cell }: CodeCellProps) => {
       <Editor
         defaultLanguage={isPython ? 'python' : 'typescript'}
         defaultValue={isPython ? sampleContentPy : sampleContentTs}
-        theme="vs-dark"
+        theme={isDark ? 'vs-dark' : 'vs-light'}
         options={{
           lineNumbersMinChars: 3,
           showFoldingControls: 'never',
@@ -37,6 +39,6 @@ const CodeCell = ({ cell }: CodeCellProps) => {
       />
     </Box>
   );
-}
+};
 
 export default CodeCell;

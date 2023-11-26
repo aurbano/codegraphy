@@ -7,19 +7,19 @@ import {
   type PortalProps,
   useEventListener,
 } from '@chakra-ui/react';
-import { type MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
+import { type MutableRefObject, useCallback, useEffect, useState } from 'react';
 
 export interface ContextMenuProps<T extends HTMLElement> {
+  targetRef: MutableRefObject<T | null>;
   menuProps?: Omit<MenuProps, 'children'> & { children?: React.ReactNode };
   portalProps?: Omit<PortalProps, 'children'> & { children?: React.ReactNode };
   menuButtonProps?: MenuButtonProps;
-  renderMenu: () => JSX.Element | null;
-  children: (ref: MutableRefObject<T | null>) => JSX.Element | null;
+  renderMenu: (target: MouseEvent | undefined) => JSX.Element | null;
 }
 
 export const ContextMenu = <T extends HTMLElement = HTMLElement>({
+  targetRef,
   renderMenu,
-  children,
   menuProps,
   portalProps,
   menuButtonProps,
@@ -28,7 +28,7 @@ export const ContextMenu = <T extends HTMLElement = HTMLElement>({
   const [isRendered, setIsRendered] = useState(false);
   const [isDeferredOpen, setIsDeferredOpen] = useState(false);
   const [position, setPosition] = useState<[number, number]>([0, 0]);
-  const targetRef = useRef<T>(null);
+  const [event, setEvent] = useState<MouseEvent>();
 
   useEffect(() => {
     if (isOpen) {
@@ -54,6 +54,7 @@ export const ContextMenu = <T extends HTMLElement = HTMLElement>({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     if (targetRef.current?.contains(e.target as any) ?? e.target === targetRef.current) {
       e.preventDefault();
+      setEvent(e);
       setIsOpen(true);
       setPosition([e.pageX, e.pageY]);
     } else {
@@ -67,29 +68,28 @@ export const ContextMenu = <T extends HTMLElement = HTMLElement>({
   }, [menuProps]);
 
   return (
-    <>
-      {children(targetRef)}
+    <Portal {...portalProps}>
+      <Menu
+        isOpen={isRendered && isDeferredOpen}
+        gutter={0}
+        {...menuProps}
+        onClose={onCloseHandler}
+      >
+        <MenuButton
+          aria-hidden
+          w={1}
+          h={1}
+          style={{
+            position: 'absolute',
+            left: position[0],
+            top: position[1],
+            cursor: 'default',
+          }}
+          {...menuButtonProps}
+        />
 
-      {isRendered && (
-        <Portal {...portalProps}>
-          <Menu isOpen={isDeferredOpen} gutter={0} {...menuProps} onClose={onCloseHandler}>
-            <MenuButton
-              aria-hidden
-              w={1}
-              h={1}
-              style={{
-                position: 'absolute',
-                left: position[0],
-                top: position[1],
-                cursor: 'default',
-              }}
-              {...menuButtonProps}
-            />
-
-            {renderMenu()}
-          </Menu>
-        </Portal>
-      )}
-    </>
+        {renderMenu(event)}
+      </Menu>
+    </Portal>
   );
 };

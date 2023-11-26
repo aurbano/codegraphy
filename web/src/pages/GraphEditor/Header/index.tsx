@@ -1,4 +1,4 @@
-import { Box, Container, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, DarkMode, Flex } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import { FaCloud } from 'react-icons/fa';
 
@@ -14,11 +14,8 @@ export interface HeaderProps {
   onOpenGraph: (graphPath: string) => void;
 }
 
-const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => {
-  const bg = useColorModeValue('headerBgLight', 'headerBgDark');
-  const border = useColorModeValue('headerBorderLight', 'headerBorderDark');
-
-  return (
+const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => (
+  <DarkMode>
     <AnimatePresence>
       {!isHeaderCollapsed && (
         <AnimatedBox
@@ -26,9 +23,9 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => {
           initial={{ height: 0 }}
           animate={{ height: 'auto', transition: { duration: 0.1, ease: 'linear' } }}
           exit={{ height: 0 }}
-          bg={bg}
+          bg="headerBgDark"
           borderBottom="2px solid"
-          borderBottomColor={border}
+          borderBottomColor="headerBorderDark"
           px={4}
           pt={3}
           pb={2}
@@ -50,7 +47,7 @@ const Header = ({ graphPath, isHeaderCollapsed, onOpenGraph }: HeaderProps) => {
         </AnimatedBox>
       )}
     </AnimatePresence>
-  );
-};
+  </DarkMode>
+);
 
 export default Header;

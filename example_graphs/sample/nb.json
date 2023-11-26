@@ -65,23 +65,6 @@
       "outputs": [
         "12"
       ]
-    },
-    {
-      "id": "random",
-      "cell_type": "code",
-      "returns": [
-        0
-      ],
-      "position": {
-        "x": 200,
-        "y": 500
-      },
-      "file_name": "random.ts",
-      "kernel": "typescript4.2",
-      "params": [],
-      "execution_count": 0,
-      "execution_time": null,
-      "outputs": []
     }
   ],
   "links": [

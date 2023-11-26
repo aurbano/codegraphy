@@ -1,22 +1,13 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  Container,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react';
+import { Alert, AlertDescription, AlertIcon, Box, Container, Flex } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
-import { AiFillCode } from 'react-icons/ai';
-import { FaTrash } from 'react-icons/fa';
-import { LuTextCursorInput } from 'react-icons/lu';
+import { useRef, useState } from 'react';
 
 import { useReadGraphApiGraphsGet, useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
+import type { CodeNodeModel } from '../../../components/Canvas/Node/CodeNodeModel';
 import CenterLoader from '../../../components/CenterLoader';
-import { ContextMenu } from '../../../components/ContextMenu';
 import type { GraphModel } from '../../../models';
+import GraphContextMenu from './GraphContextMenu';
 import GraphHeader from './GraphHeader';
 
 export interface GraphLoaderProps {
@@ -33,6 +24,9 @@ const GraphLoader = ({
   toggleHeaderCollapsed,
 }: GraphLoaderProps) => {
   const queryClient = useQueryClient();
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+
+  const [selectedNode, setSelectedNode] = useState<CodeNodeModel>();
 
   const {
     isLoading,
@@ -85,33 +79,40 @@ const GraphLoader = ({
 
   const codeGraph = response.data;
 
+  const preventEvent = (e: React.MouseEvent | React.UIEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <>
-      <GraphHeader
-        graph={codeGraph}
-        isHeaderCollapsed={isHeaderCollapsed}
-        toggleHeaderCollapsed={toggleHeaderCollapsed}
-        isAddingCell={updateMutation.isPending}
-        onOpenGraph={onOpenGraph}
-        onUpdateGraph={onUpdateGraph}
-      />
+      <GraphContextMenu selectedNode={selectedNode} canvasContainerRef={canvasContainerRef} />
+      <Flex direction="column" h="100%">
+        <GraphHeader
+          graph={codeGraph}
+          isHeaderCollapsed={isHeaderCollapsed}
+          toggleHeaderCollapsed={toggleHeaderCollapsed}
+          isAddingCell={updateMutation.isPending}
+          onOpenGraph={onOpenGraph}
+          onUpdateGraph={onUpdateGraph}
+        />
 
-      <ContextMenu<HTMLDivElement>
-        renderMenu={() => (
-          <MenuList fontSize="sm">
-            <MenuItem icon={<LuTextCursorInput />}>Add Input Cell</MenuItem>
-            <MenuItem icon={<AiFillCode />}>Add Code Cell</MenuItem>
-            <MenuDivider />
-            <MenuItem icon={<FaTrash />}>Delete Cell</MenuItem>
-          </MenuList>
-        )}
-      >
-        {(ref) => (
-          <div ref={ref} style={{ width: '100%', height: '100%' }}>
-            <Canvas codeGraph={codeGraph} onUpateGraph={onUpdateGraph} />
-          </div>
-        )}
-      </ContextMenu>
+        <Box
+          key="canvas-container"
+          ref={canvasContainerRef}
+          style={{ width: '100%', height: '100%' }}
+          onScroll={preventEvent}
+          onScrollCapture={preventEvent}
+          onWheel={preventEvent}
+          onWheelCapture={preventEvent}
+        >
+          <Canvas
+            key="canvas"
+            codeGraph={codeGraph}
+            onUpateGraph={onUpdateGraph}
+            onSelectNode={setSelectedNode}
+          />
+        </Box>
+      </Flex>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { Badge, Box, ButtonGroup, Flex, IconButton, Progress } from '@chakra-ui/react';
+import { Badge, Box, ButtonGroup, DarkMode, Flex, IconButton, Progress } from '@chakra-ui/react';
 import type { DiagramEngine } from '@projectstorm/react-diagrams';
 import { useState } from 'react';
 import { AiFillCode } from 'react-icons/ai';
@@ -47,50 +47,52 @@ const CodeNodeWidget = ({ node, engine }: NodeProps) => {
         borderColor={isSelected ? border : 'rgba(255,255,255,0.1)'}
         color="muted.100"
       >
-        <Flex
-          direction="row"
-          cursor="move"
-          pl={2}
-          pr={1}
-          py={1}
-          gap={2}
-          borderBottom="solid 1px"
-          borderBottomColor="code.300"
-        >
-          <Box fontSize="xl" position="relative" top="2px">
-            {icon}
-          </Box>
-
-          <Box flexGrow={1}>{name}</Box>
-
-          {isCode && (
-            <Box>
-              {!isCollapsed && (
-                <Badge position="relative" top="-2px" mr={2}>
-                  {cell.kernel}
-                </Badge>
-              )}
-
-              <ButtonGroup size="xs" variant="ghost" spacing={1}>
-                <IconButton
-                  aria-label="Collapse/Expand code"
-                  icon={isCollapsed ? <BiExpandHorizontal /> : <BiCollapseHorizontal />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsCollapsed(!isCollapsed);
-                  }}
-                />
-                <IconButton
-                  aria-label="Run code"
-                  icon={<IoPlayOutline />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                />
-              </ButtonGroup>
+        <DarkMode>
+          <Flex
+            direction="row"
+            cursor="move"
+            pl={2}
+            pr={1}
+            py={1}
+            gap={2}
+            borderBottom="solid 2px"
+            borderBottomColor="rgba(255,255,255,0.1)"
+          >
+            <Box fontSize="xl" position="relative" top="2px">
+              {icon}
             </Box>
-          )}
-        </Flex>
+
+            <Box flexGrow={1}>{name}</Box>
+
+            {isCode && (
+              <Box>
+                {!isCollapsed && (
+                  <Badge position="relative" top="-2px" mr={2}>
+                    {cell.kernel}
+                  </Badge>
+                )}
+
+                <ButtonGroup size="xs" variant="ghost" spacing={1}>
+                  <IconButton
+                    aria-label="Collapse/Expand code"
+                    icon={isCollapsed ? <BiExpandHorizontal /> : <BiCollapseHorizontal />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsCollapsed(!isCollapsed);
+                    }}
+                  />
+                  <IconButton
+                    aria-label="Run code"
+                    icon={<IoPlayOutline />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  />
+                </ButtonGroup>
+              </Box>
+            )}
+          </Flex>
+        </DarkMode>
 
         {cellState.isLoading && <Progress size="xs" isIndeterminate />}
 
@@ -120,6 +122,6 @@ const CodeNodeWidget = ({ node, engine }: NodeProps) => {
       {cell.cell_type === 'code' && <Output cell={cell} />}
     </>
   );
-}
+};
 
 export default CodeNodeWidget;

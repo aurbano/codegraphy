@@ -60,6 +60,7 @@ const GraphHeader = ({
       borderBottom="solid 1px"
       borderBottomColor={isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}
       shadow="md"
+      zIndex={9}
     >
       <Container maxW={HEADER_MAX_W}>
         <Flex direction="row">

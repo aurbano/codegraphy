@@ -15,7 +15,7 @@ const InputCell = ({ cell }: InputCellProps) => {
       <FormControl>
         <Input
           type={cell.type}
-          bg={isDark ? 'muted.700' : 'muted.300'}
+          bg={isDark ? 'muted.700' : 'muted.100'}
           color={isDark ? 'inherit' : 'muted.900'}
           value={cell.value}
           placeholder="Input..."

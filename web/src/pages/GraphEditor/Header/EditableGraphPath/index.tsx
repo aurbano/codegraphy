@@ -28,6 +28,7 @@ const EditableGraphPath = ({ graphPath, onOpenGraph }: EditableGraphPathProps) =
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         type="text"
+        color="var(--chakra-colors-chakra-body-text)"
         placeholder="Enter path to a graph..."
         value={newGraphPath}
         onChange={(e) => setNewGraphPath(e.target.value)}
@@ -42,11 +43,16 @@ const EditableGraphPath = ({ graphPath, onOpenGraph }: EditableGraphPathProps) =
     : graphPath;
 
   return (
-    <Heading size="md" fontWeight="normal" onClick={toggle}>
+    <Heading
+      size="md"
+      fontWeight="normal"
+      color="var(--chakra-colors-chakra-body-text)"
+      onClick={toggle}
+    >
       {isTruncated && '...'}
       {displayGraphPath}
     </Heading>
   );
-}
+};
 
 export default EditableGraphPath;
