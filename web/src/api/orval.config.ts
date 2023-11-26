@@ -7,6 +7,7 @@ export default defineConfig({
       // validation: true,
     },
     output: {
+      baseUrl: 'http://127.0.0.1:8000',
       target: './index.ts',
       schemas: 'schema',
       client: 'react-query',

@@ -4,10 +4,11 @@ import {
   NodeModel,
 } from '@projectstorm/react-diagrams';
 
-import type { Cell, CellState } from '../types';
+import type { GraphModelCellsItem } from '../../api/schema';
+import type { CellState } from '../types';
 
 export type CodeNodeModelOptions = {
-  cell: Cell;
+  cell: GraphModelCellsItem;
   cellState: CellState;
 } & DefaultNodeModelOptions;
 

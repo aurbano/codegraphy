@@ -7,19 +7,21 @@ import {
   Heading,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
   Spacer,
   Text,
 } from '@chakra-ui/react';
 import { AiFillCode } from 'react-icons/ai';
-import { FaChevronDown, FaCloud } from 'react-icons/fa';
+import { FaChevronDown, FaCloud, FaFileMedical, FaSave } from 'react-icons/fa';
 import { IoArrowRedo, IoArrowUndo, IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
 
 import ToggleTheme from '../components/ChangeTheme';
 import InlineIcon from '../components/InlineIcon';
 import Logo from '../components/Logo';
+import getKeyboardCommand from '../util/getKeyboardCommand';
 import useIsDark from '../util/hooks/useIsDark';
 import ServerStatus from './ServerStatus';
 
@@ -69,9 +71,16 @@ function Header() {
                 File
               </MenuButton>
               <MenuList>
-                <MenuItem>New</MenuItem>
-                <MenuItem>Save</MenuItem>
-                <MenuItem>Save as...</MenuItem>
+                <MenuItem icon={<FaFileMedical />} command={getKeyboardCommand(['meta', 'N'])}>
+                  New
+                </MenuItem>
+                <MenuItem icon={<FaSave />} command={getKeyboardCommand(['meta', 'S'])}>
+                  Save
+                </MenuItem>
+                <MenuItem icon={<FaSave />} command={getKeyboardCommand(['shift', 'meta', 'T'])}>
+                  Save as...
+                </MenuItem>
+                <MenuDivider />
                 <ToggleTheme />
               </MenuList>
             </Menu>

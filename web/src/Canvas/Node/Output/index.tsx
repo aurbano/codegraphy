@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react';
 import { FaCheck } from 'react-icons/fa';
 
+import type { CodeCellModel } from '../../../api/schema';
 import InlineIcon from '../../../components/InlineIcon';
-import type { CellCode } from '../../types';
 
 export interface OutputProps {
-  cell: CellCode;
+  cell: CodeCellModel;
 }
 
 function Output({ cell }: OutputProps) {

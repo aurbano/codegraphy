@@ -1,10 +1,10 @@
 import { Box, FormControl, Input } from '@chakra-ui/react';
 
+import type { InputCellModel } from '../../../../api/schema';
 import useIsDark from '../../../../util/hooks/useIsDark';
-import type { CellInput } from '../../../types';
 
 export interface InputCellProps {
-  cell: CellInput;
+  cell: InputCellModel;
 }
 
 function InputCell({ cell }: InputCellProps) {

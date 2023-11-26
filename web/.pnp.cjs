@@ -55,6 +55,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-unused-imports", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],\
           ["framer-motion", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:10.16.5"],\
           ["lodash", "npm:4.17.21"],\
+          ["monaco-editor", "npm:0.44.0"],\
           ["msw", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.0.9"],\
           ["orval", "npm:6.20.0"],\
           ["prettier", "npm:3.1.0"],\
@@ -3889,7 +3890,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@monaco-editor/loader", "virtual:712653a82e33a8359055116e244f2ddfe56dd5819101d57df4eb918832273228b62c62e4773dfab1a65f7420d920a18b572b032e290e4efe7d5438cdcfc4d996#npm:1.4.0"],\
           ["@types/monaco-editor", null],\
-          ["monaco-editor", null],\
+          ["monaco-editor", "npm:0.44.0"],\
           ["state-local", "npm:1.0.7"]\
         ],\
         "packagePeers": [\
@@ -3915,7 +3916,7 @@ const RAW_RUNTIME_STATE =
           ["@types/monaco-editor", null],\
           ["@types/react", "npm:18.2.38"],\
           ["@types/react-dom", "npm:18.2.16"],\
-          ["monaco-editor", null],\
+          ["monaco-editor", "npm:0.44.0"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:18.2.0"]\
         ],\
@@ -9463,6 +9464,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["monaco-editor", [\
+      ["npm:0.44.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/monaco-editor-npm-0.44.0-888dafb151-10c0.zip/node_modules/monaco-editor/",\
+        "packageDependencies": [\
+          ["monaco-editor", "npm:0.44.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["ms", [\
       ["npm:2.1.2", {\
         "packageLocation": "../../../../.yarn/berry/cache/ms-npm-2.1.2-ec0c1512ff-10c0.zip/node_modules/ms/",\
@@ -11959,6 +11969,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-unused-imports", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],\
           ["framer-motion", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:10.16.5"],\
           ["lodash", "npm:4.17.21"],\
+          ["monaco-editor", "npm:0.44.0"],\
           ["msw", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.0.9"],\
           ["orval", "npm:6.20.0"],\
           ["prettier", "npm:3.1.0"],\

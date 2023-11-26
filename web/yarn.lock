@@ -6746,6 +6746,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"monaco-editor@npm:^0.44.0":
+  version: 0.44.0
+  resolution: "monaco-editor@npm:0.44.0"
+  checksum: 22676f597f702763c33dcdec8b5d6d1c3a5e1a52910074c46a6477ac9c8308cec2dede968230fb9b69fc91f4fc4687cff8bbe0f2365ece49ded9b248a7dcbc62
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -8920,6 +8927,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^3.0.0"
     framer-motion: "npm:^10.16.5"
     lodash: "npm:^4.17.21"
+    monaco-editor: "npm:^0.44.0"
     msw: "npm:^2.0.9"
     orval: "npm:^6.20.0"
     prettier: "npm:^3.1.0"

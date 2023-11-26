@@ -1,15 +1,17 @@
-import type { CodeGraph } from './types';
+import type { GraphModel } from '../api/schema';
 
-export const sampleCodeGraph: CodeGraph = {
-  // "metadata": {
-  //   "kernels": {
-  //     "python3.9": {
-  //       "display_name": "safebeat-ml-wN8LJ0A5-py3.9",
-  //       "language": "python",
-  //       "name": "python3"
-  //     }
-  //   }
-  // },
+export const sampleCodeGraph: GraphModel = {
+  metadata: {
+    kernels: [
+      {
+        display_name: 'safebeat-ml-wN8LJ0A5-py3.9',
+        language: 'python',
+        name: 'python3',
+      },
+    ],
+    graph_version: 1,
+    graph_version_minor: 0,
+  },
   cells: [
     {
       id: 'num1',
@@ -58,7 +60,7 @@ export const sampleCodeGraph: CodeGraph = {
       params: [],
       returns: [0],
       execution_count: 0,
-      execution_time: undefined,
+      execution_time: null,
       outputs: [],
       position: {
         x: 200,
@@ -68,23 +70,23 @@ export const sampleCodeGraph: CodeGraph = {
   ],
   links: [
     {
-      from: {
+      from_cell: {
         id: 'num1',
-        return: 'out-0',
+        port: 'out-0',
       },
-      to: {
+      to_cell: {
         id: 'add',
-        param: 'in-0',
+        port: 'in-0',
       },
     },
     {
-      from: {
+      from_cell: {
         id: 'num2',
-        return: 'out-0',
+        port: 'out-0',
       },
-      to: {
+      to_cell: {
         id: 'add',
-        param: 'in-1',
+        port: 'in-1',
       },
     },
   ],

@@ -1,6 +1,7 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import type React from 'react';
 
+import QueryContext from './QueryContext';
 import theme, { initialColorMode } from './theme';
 
 export interface SetupContextProps {
@@ -10,8 +11,10 @@ export interface SetupContextProps {
 function SetupContext({ children }: SetupContextProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <ColorModeScript initialColorMode={initialColorMode} />
-      {children}
+      <QueryContext>
+        <ColorModeScript initialColorMode={initialColorMode} />
+        {children}
+      </QueryContext>
     </ChakraProvider>
   );
 }

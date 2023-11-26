@@ -1,9 +1,9 @@
-import type { Cell } from '../../types';
+import type { GraphModelCellsItem } from '../../../api/schema';
 import CodeCell from './cells/CodeCell';
 import InputCell from './cells/InputCell';
 
 export interface CodeNodeContentProps {
-  cell: Cell;
+  cell: GraphModelCellsItem;
 }
 
 function CodeNodeContent({ cell }: CodeNodeContentProps) {
