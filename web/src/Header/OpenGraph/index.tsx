@@ -1,5 +1,6 @@
 import {
   Button,
+  Input,
   MenuItem,
   Modal,
   ModalBody,
@@ -38,7 +39,9 @@ function OpenGraph({ onOpenGraph }: OpenGraphProps) {
             Open Graph
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>File browser</ModalBody>
+          <ModalBody>
+            <Input type="file" onChange={(e) => setGraphPath(e.target.value)} />
+          </ModalBody>
 
           <ModalFooter>
             <Button variant="ghost" mr={3} onClick={off}>

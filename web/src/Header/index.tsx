@@ -23,6 +23,7 @@ import InlineIcon from '../components/InlineIcon';
 import Logo from '../components/Logo';
 import getKeyboardCommand from '../util/getKeyboardCommand';
 import useIsDark from '../util/hooks/useIsDark';
+import EditableGraphPath from './EditableGraphPath';
 import OpenGraph from './OpenGraph';
 import ServerStatus from './ServerStatus';
 
@@ -57,11 +58,9 @@ function Header({ graphPath, onOpenGraph }: HeaderProps) {
             <Flex direction="row" flexGrow={1} gap={4} alignItems="center">
               <Logo fontSize="1.3rem" />
 
-              <Heading size="md" fontWeight="normal">
-                {graphPath}
-              </Heading>
+              <EditableGraphPath graphPath={graphPath} onOpenGraph={onOpenGraph} />
 
-              <Text fontSize="sm" color="muted.500">
+              <Text fontSize="sm" color="muted.500" minW="70px">
                 <InlineIcon icon={<FaCloud />} mr={2} />
                 Saved
               </Text>
