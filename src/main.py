@@ -5,7 +5,17 @@ from starlette.middleware.cors import CORSMiddleware
 
 from src import graphs, cells
 
-app = FastAPI()
+app = FastAPI(
+    title="Codegraphy API",
+    contact={
+        "name": "Codegraphy Github",
+        "url": "https://github.com/aurbano/codegraphy",
+    },
+    license_info={
+        "name": "BSD-3-Clause",
+        "url": "https://github.com/aurbano/codegraphy/blob/main/LICENSE",
+    },
+)
 
 app.add_middleware(
     CORSMiddleware,

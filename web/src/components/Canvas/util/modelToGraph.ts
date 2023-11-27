@@ -36,6 +36,7 @@ const modelToGraph = (graph: GraphModel, model: DiagramModel): GraphModel => {
         id: toCell.id,
         port: toPort.getName(),
       },
+      value: null,
     });
   });
 

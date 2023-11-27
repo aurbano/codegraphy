@@ -29,7 +29,7 @@ import AddInput from './AddInput';
 
 export interface GraphHeaderProps {
   isHeaderCollapsed: boolean;
-  isAddingCell: boolean;
+  isSavingGraph: boolean;
   onOpenGraph: (graphPath: string) => void;
   onUpdateGraph: (newGraph: GraphModel) => void;
   toggleHeaderCollapsed: () => void;
@@ -37,7 +37,7 @@ export interface GraphHeaderProps {
 
 const GraphHeader = ({
   isHeaderCollapsed,
-  isAddingCell,
+  isSavingGraph,
   onOpenGraph,
   onUpdateGraph,
   toggleHeaderCollapsed,
@@ -101,7 +101,7 @@ const GraphHeader = ({
               </MenuList>
             </Menu>
 
-            <AddInput isAddingCell={isAddingCell} onAddCell={onAddCell} />
+            <AddInput isAddingCell={isSavingGraph} onAddCell={onAddCell} />
 
             <Button leftIcon={<AiFillCode />} colorScheme="code" isDisabled>
               Add Code

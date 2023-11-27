@@ -5,6 +5,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type UpdateGraphApiGraphsPutParams = {
+export type SaveCellContentsApiCellsPutParams = {
   f: string;
+  cell_id: string;
 };

@@ -6,6 +6,7 @@ import { useUpdateGraphApiGraphsPut } from '../../../api';
 import Canvas from '../../../components/Canvas';
 import type { CodeNodeModel } from '../../../components/Canvas/Node/CodeNodeModel';
 import CenterLoader from '../../../components/CenterLoader';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 import type { GraphModel } from '../../../models';
 import useGraphModel from '../../../util/hooks/useGraphModel';
 import GraphContextMenu from './GraphContextMenu';
@@ -72,11 +73,12 @@ const GraphLoader = ({
   return (
     <>
       <GraphContextMenu selectedNode={selectedNode} canvasContainerRef={canvasContainerRef} />
+
       <Flex direction="column" h="100%">
         <GraphHeader
           isHeaderCollapsed={isHeaderCollapsed}
           toggleHeaderCollapsed={toggleHeaderCollapsed}
-          isAddingCell={updateMutation.isPending}
+          isSavingGraph={updateMutation.isPending}
           onOpenGraph={onOpenGraph}
           onUpdateGraph={onUpdateGraph}
         />
@@ -86,11 +88,11 @@ const GraphLoader = ({
           ref={canvasContainerRef}
           style={{ width: '100%', height: '100%' }}
           onScroll={preventEvent}
-          onScrollCapture={preventEvent}
           onWheel={preventEvent}
-          onWheelCapture={preventEvent}
         >
-          <Canvas key="canvas" onUpateGraph={onUpdateGraph} onSelectNode={setSelectedNode} />
+          <ErrorBoundary>
+            <Canvas key="canvas" onUpateGraph={onUpdateGraph} onSelectNode={setSelectedNode} />
+          </ErrorBoundary>
         </Box>
       </Flex>
     </>

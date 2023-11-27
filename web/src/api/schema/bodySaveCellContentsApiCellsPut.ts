@@ -5,6 +5,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type UpdateGraphApiGraphsPutParams = {
-  f: string;
-};
+export interface BodySaveCellContentsApiCellsPut {
+  content: string;
+}

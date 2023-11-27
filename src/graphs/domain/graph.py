@@ -14,7 +14,8 @@ class MetadataModel(BaseModel):
     graph_version_minor: int
 
 
-PortId = Union[str, int]
+PortId = str | int
+CellReturnValue = str | int | None
 
 
 class CellPosition(BaseModel):
@@ -43,7 +44,7 @@ class InputCellModel(BaseCellModel):
     cell_type: Literal["input"]
     label: str
     type: Literal["text", "number", "email"]
-    value: str | int
+    value: CellReturnValue
 
 
 CellModel = Union[CodeCellModel, InputCellModel]
@@ -57,6 +58,7 @@ class LinkItemModel(BaseModel):
 class LinkModel(BaseModel):
     from_cell: LinkItemModel
     to_cell: LinkItemModel
+    value: CellReturnValue
 
 
 class GraphModel(BaseModel):

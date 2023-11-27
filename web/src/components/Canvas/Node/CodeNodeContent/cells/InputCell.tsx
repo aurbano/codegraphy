@@ -11,7 +11,7 @@ export interface InputCellProps {
 
 const InputCell = ({ cell, onUpdateValue }: InputCellProps) => {
   const isDark = useIsDark();
-  const [value, setValue] = useState(cell.value);
+  const [value, setValue] = useState(cell.value || '');
 
   return (
     <Box px={2} py={1} minW="150px">
@@ -20,7 +20,7 @@ const InputCell = ({ cell, onUpdateValue }: InputCellProps) => {
           type={cell.type}
           bg={isDark ? 'muted.700' : 'muted.100'}
           color={isDark ? 'inherit' : 'muted.900'}
-          value={value}
+          value={value || ''}
           placeholder="Input..."
           onKeyDown={(e) => e.stopPropagation()}
           onChange={(e) => setValue(e.target.value)}
