@@ -5,4 +5,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type LinkItemModelPort = string | number;
+export type RunCellApiCellsCellIdRunPatchParams = {
+  f: string;
+};

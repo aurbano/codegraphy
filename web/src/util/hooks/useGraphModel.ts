@@ -1,4 +1,5 @@
 import { useReadGraphApiGraphsGet } from '../../api';
+import QueryKeys from '../../models/queryKeys';
 import { useGraphContext } from '../../pages/GraphEditor/GraphLoader/GraphContext';
 import getEmptyGraph from '../getEmptyGraph';
 
@@ -11,7 +12,7 @@ const useGraphModel = () => {
     },
     {
       query: {
-        queryKey: ['graphs', graphPath],
+        queryKey: QueryKeys.Graph(graphPath),
       },
     },
   );

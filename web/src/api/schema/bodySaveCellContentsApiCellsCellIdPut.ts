@@ -5,6 +5,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface BodySaveCellContentsApiCellsPut {
+export interface BodySaveCellContentsApiCellsCellIdPut {
   content: string;
 }

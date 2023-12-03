@@ -24,18 +24,18 @@ export class CodeNodeModel extends NodeModel {
     this.nodeOptions = options;
 
     options.cell.returns.forEach((ret, index) => {
-      const name = `out-${index}`;
+      const name = index;
       const label = typeof ret === 'string' ? ret : undefined;
 
-      this.addPort(new DefaultPortModel(false, name, label));
+      this.addPort(new DefaultPortModel(false, String(name), label));
     });
 
     if (options.cell.cell_type === 'code') {
       options.cell.params.forEach((param, index) => {
-        const name = `in-${index}`;
+        const name = index;
         const label = typeof param === 'string' ? param : undefined;
 
-        this.addPort(new DefaultPortModel(true, name, label));
+        this.addPort(new DefaultPortModel(true, String(name), label));
       });
     }
   }

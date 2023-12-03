@@ -71,22 +71,22 @@
     {
       "from_cell": {
         "id": "num1",
-        "port": "out-0"
+        "port": 0
       },
       "to_cell": {
         "id": "add",
-        "port": "in-0"
+        "port": 0
       },
       "value": 10
     },
     {
       "from_cell": {
         "id": "num2",
-        "port": "out-0"
+        "port": 0
       },
       "to_cell": {
         "id": "add",
-        "port": "in-1"
+        "port": 1
       },
       "value": 2
     }

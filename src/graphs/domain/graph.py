@@ -52,7 +52,7 @@ CellModel = Union[CodeCellModel, InputCellModel]
 
 class LinkItemModel(BaseModel):
     id: str
-    port: PortId
+    port: int
 
 
 class LinkModel(BaseModel):

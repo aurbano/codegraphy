@@ -17,14 +17,15 @@ import * as axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import type {
   ApiRoot,
-  BodySaveCellContentsApiCellsPut,
+  BodySaveCellContentsApiCellsCellIdPut,
   CellContent,
   GraphModelInput,
   GraphModelOutput,
   HTTPValidationError,
-  ReadCellContentsApiCellsGetParams,
+  ReadCellContentsApiCellsCellIdGetParams,
   ReadGraphApiGraphsGetParams,
-  SaveCellContentsApiCellsPutParams,
+  RunCellApiCellsCellIdRunPatchParams,
+  SaveCellContentsApiCellsCellIdPutParams,
   UpdateGraphApiGraphsPutParams,
 } from './schema';
 
@@ -228,70 +229,75 @@ export const useUpdateGraphApiGraphsPut = <
 /**
  * @summary Read Cell Contents
  */
-export const readCellContentsApiCellsGet = (
-  params: ReadCellContentsApiCellsGetParams,
+export const readCellContentsApiCellsCellIdGet = (
+  cellId: string,
+  params: ReadCellContentsApiCellsCellIdGetParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<CellContent>> => {
-  return axios.default.get(`http://127.0.0.1:8000/api/cells/`, {
+  return axios.default.get(`http://127.0.0.1:8000/api/cells/${cellId}`, {
     ...options,
     params: { ...params, ...options?.params },
   });
 };
 
-export const getReadCellContentsApiCellsGetQueryKey = (
-  params: ReadCellContentsApiCellsGetParams,
+export const getReadCellContentsApiCellsCellIdGetQueryKey = (
+  cellId: string,
+  params: ReadCellContentsApiCellsCellIdGetParams,
 ) => {
-  return [`http://127.0.0.1:8000/api/cells/`, ...(params ? [params] : [])] as const;
+  return [`http://127.0.0.1:8000/api/cells/${cellId}`, ...(params ? [params] : [])] as const;
 };
 
-export const getReadCellContentsApiCellsGetQueryOptions = <
-  TData = Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+export const getReadCellContentsApiCellsCellIdGetQueryOptions = <
+  TData = Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>,
   TError = AxiosError<HTTPValidationError>,
 >(
-  params: ReadCellContentsApiCellsGetParams,
+  cellId: string,
+  params: ReadCellContentsApiCellsCellIdGetParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>, TError, TData>
+      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>, TError, TData>
     >;
     axios?: AxiosRequestConfig;
   },
 ) => {
   const { query: queryOptions, axios: axiosOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getReadCellContentsApiCellsGetQueryKey(params);
+  const queryKey =
+    queryOptions?.queryKey ?? getReadCellContentsApiCellsCellIdGetQueryKey(cellId, params);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>> = ({
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>> = ({
     signal,
-  }) => readCellContentsApiCellsGet(params, { signal, ...axiosOptions });
+  }) => readCellContentsApiCellsCellIdGet(cellId, params, { signal, ...axiosOptions });
 
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+  return { queryKey, queryFn, enabled: !!cellId, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type ReadCellContentsApiCellsGetQueryResult = NonNullable<
-  Awaited<ReturnType<typeof readCellContentsApiCellsGet>>
+export type ReadCellContentsApiCellsCellIdGetQueryResult = NonNullable<
+  Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>
 >;
-export type ReadCellContentsApiCellsGetQueryError = AxiosError<HTTPValidationError>;
+export type ReadCellContentsApiCellsCellIdGetQueryError = AxiosError<HTTPValidationError>;
 
 /**
  * @summary Read Cell Contents
  */
-export const useReadCellContentsApiCellsGet = <
-  TData = Awaited<ReturnType<typeof readCellContentsApiCellsGet>>,
+export const useReadCellContentsApiCellsCellIdGet = <
+  TData = Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>,
   TError = AxiosError<HTTPValidationError>,
 >(
-  params: ReadCellContentsApiCellsGetParams,
+  cellId: string,
+  params: ReadCellContentsApiCellsCellIdGetParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsGet>>, TError, TData>
+      UseQueryOptions<Awaited<ReturnType<typeof readCellContentsApiCellsCellIdGet>>, TError, TData>
     >;
     axios?: AxiosRequestConfig;
   },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getReadCellContentsApiCellsGetQueryOptions(params, options);
+  const queryOptions = getReadCellContentsApiCellsCellIdGetQueryOptions(cellId, params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -303,70 +309,162 @@ export const useReadCellContentsApiCellsGet = <
 /**
  * @summary Save Cell Contents
  */
-export const saveCellContentsApiCellsPut = (
-  bodySaveCellContentsApiCellsPut: BodySaveCellContentsApiCellsPut,
-  params: SaveCellContentsApiCellsPutParams,
+export const saveCellContentsApiCellsCellIdPut = (
+  cellId: string,
+  bodySaveCellContentsApiCellsCellIdPut: BodySaveCellContentsApiCellsCellIdPut,
+  params: SaveCellContentsApiCellsCellIdPutParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<GraphModelOutput>> => {
-  return axios.default.put(`http://127.0.0.1:8000/api/cells/`, bodySaveCellContentsApiCellsPut, {
-    ...options,
-    params: { ...params, ...options?.params },
-  });
+  return axios.default.put(
+    `http://127.0.0.1:8000/api/cells/${cellId}`,
+    bodySaveCellContentsApiCellsCellIdPut,
+    {
+      ...options,
+      params: { ...params, ...options?.params },
+    },
+  );
 };
 
-export const getSaveCellContentsApiCellsPutMutationOptions = <
+export const getSaveCellContentsApiCellsCellIdPutMutationOptions = <
   TError = AxiosError<HTTPValidationError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof saveCellContentsApiCellsPut>>,
+    Awaited<ReturnType<typeof saveCellContentsApiCellsCellIdPut>>,
     TError,
-    { data: BodySaveCellContentsApiCellsPut; params: SaveCellContentsApiCellsPutParams },
+    {
+      cellId: string;
+      data: BodySaveCellContentsApiCellsCellIdPut;
+      params: SaveCellContentsApiCellsCellIdPutParams;
+    },
     TContext
   >;
   axios?: AxiosRequestConfig;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof saveCellContentsApiCellsPut>>,
+  Awaited<ReturnType<typeof saveCellContentsApiCellsCellIdPut>>,
   TError,
-  { data: BodySaveCellContentsApiCellsPut; params: SaveCellContentsApiCellsPutParams },
+  {
+    cellId: string;
+    data: BodySaveCellContentsApiCellsCellIdPut;
+    params: SaveCellContentsApiCellsCellIdPutParams;
+  },
   TContext
 > => {
   const { mutation: mutationOptions, axios: axiosOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof saveCellContentsApiCellsPut>>,
-    { data: BodySaveCellContentsApiCellsPut; params: SaveCellContentsApiCellsPutParams }
+    Awaited<ReturnType<typeof saveCellContentsApiCellsCellIdPut>>,
+    {
+      cellId: string;
+      data: BodySaveCellContentsApiCellsCellIdPut;
+      params: SaveCellContentsApiCellsCellIdPutParams;
+    }
   > = (props) => {
-    const { data, params } = props ?? {};
+    const { cellId, data, params } = props ?? {};
 
-    return saveCellContentsApiCellsPut(data, params, axiosOptions);
+    return saveCellContentsApiCellsCellIdPut(cellId, data, params, axiosOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type SaveCellContentsApiCellsPutMutationResult = NonNullable<
-  Awaited<ReturnType<typeof saveCellContentsApiCellsPut>>
+export type SaveCellContentsApiCellsCellIdPutMutationResult = NonNullable<
+  Awaited<ReturnType<typeof saveCellContentsApiCellsCellIdPut>>
 >;
-export type SaveCellContentsApiCellsPutMutationBody = BodySaveCellContentsApiCellsPut;
-export type SaveCellContentsApiCellsPutMutationError = AxiosError<HTTPValidationError>;
+export type SaveCellContentsApiCellsCellIdPutMutationBody = BodySaveCellContentsApiCellsCellIdPut;
+export type SaveCellContentsApiCellsCellIdPutMutationError = AxiosError<HTTPValidationError>;
 
 /**
  * @summary Save Cell Contents
  */
-export const useSaveCellContentsApiCellsPut = <
+export const useSaveCellContentsApiCellsCellIdPut = <
   TError = AxiosError<HTTPValidationError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof saveCellContentsApiCellsPut>>,
+    Awaited<ReturnType<typeof saveCellContentsApiCellsCellIdPut>>,
     TError,
-    { data: BodySaveCellContentsApiCellsPut; params: SaveCellContentsApiCellsPutParams },
+    {
+      cellId: string;
+      data: BodySaveCellContentsApiCellsCellIdPut;
+      params: SaveCellContentsApiCellsCellIdPutParams;
+    },
     TContext
   >;
   axios?: AxiosRequestConfig;
 }) => {
-  const mutationOptions = getSaveCellContentsApiCellsPutMutationOptions(options);
+  const mutationOptions = getSaveCellContentsApiCellsCellIdPutMutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
+
+/**
+ * @summary Run Cell
+ */
+export const runCellApiCellsCellIdRunPatch = (
+  cellId: string,
+  params: RunCellApiCellsCellIdRunPatchParams,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<GraphModelOutput>> => {
+  return axios.default.patch(`http://127.0.0.1:8000/api/cells/${cellId}/run`, undefined, {
+    ...options,
+    params: { ...params, ...options?.params },
+  });
+};
+
+export const getRunCellApiCellsCellIdRunPatchMutationOptions = <
+  TError = AxiosError<HTTPValidationError>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof runCellApiCellsCellIdRunPatch>>,
+    TError,
+    { cellId: string; params: RunCellApiCellsCellIdRunPatchParams },
+    TContext
+  >;
+  axios?: AxiosRequestConfig;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof runCellApiCellsCellIdRunPatch>>,
+  TError,
+  { cellId: string; params: RunCellApiCellsCellIdRunPatchParams },
+  TContext
+> => {
+  const { mutation: mutationOptions, axios: axiosOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof runCellApiCellsCellIdRunPatch>>,
+    { cellId: string; params: RunCellApiCellsCellIdRunPatchParams }
+  > = (props) => {
+    const { cellId, params } = props ?? {};
+
+    return runCellApiCellsCellIdRunPatch(cellId, params, axiosOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type RunCellApiCellsCellIdRunPatchMutationResult = NonNullable<
+  Awaited<ReturnType<typeof runCellApiCellsCellIdRunPatch>>
+>;
+
+export type RunCellApiCellsCellIdRunPatchMutationError = AxiosError<HTTPValidationError>;
+
+/**
+ * @summary Run Cell
+ */
+export const useRunCellApiCellsCellIdRunPatch = <
+  TError = AxiosError<HTTPValidationError>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof runCellApiCellsCellIdRunPatch>>,
+    TError,
+    { cellId: string; params: RunCellApiCellsCellIdRunPatchParams },
+    TContext
+  >;
+  axios?: AxiosRequestConfig;
+}) => {
+  const mutationOptions = getRunCellApiCellsCellIdRunPatchMutationOptions(options);
 
   return useMutation(mutationOptions);
 };

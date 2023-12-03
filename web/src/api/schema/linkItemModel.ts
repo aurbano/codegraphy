@@ -4,9 +4,8 @@
  * Codegraphy API
  * OpenAPI spec version: 0.1.0
  */
-import type { LinkItemModelPort } from './linkItemModelPort';
 
 export interface LinkItemModel {
   id: string;
-  port: LinkItemModelPort;
+  port: number;
 }

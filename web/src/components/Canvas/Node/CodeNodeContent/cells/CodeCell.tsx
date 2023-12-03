@@ -4,8 +4,12 @@ import { useQueryClient } from '@tanstack/react-query';
 import * as monaco from 'monaco-editor';
 import { useEffect, useRef, useState } from 'react';
 
-import { useReadCellContentsApiCellsGet, useSaveCellContentsApiCellsPut } from '../../../../../api';
+import {
+  useReadCellContentsApiCellsCellIdGet,
+  useSaveCellContentsApiCellsCellIdPut,
+} from '../../../../../api';
 import type { CodeCellModel } from '../../../../../api/schema';
+import QueryKeys from '../../../../../models/queryKeys';
 import { useGraphContext } from '../../../../../pages/GraphEditor/GraphLoader/GraphContext';
 import useIsDark from '../../../../../util/hooks/useIsDark';
 
@@ -24,35 +28,39 @@ const CodeCell = ({ cell }: CodeCellProps) => {
 
   const isPython = cell.kernel === 'python3.9';
 
-  const { data: response } = useReadCellContentsApiCellsGet(
+  const { data: response } = useReadCellContentsApiCellsCellIdGet(
+    cell.id,
     {
       f: graphPath,
-      cell_id: cell.id,
     },
     {
       query: {
-        queryKey: ['cell', graphPath, cell.id],
+        queryKey: QueryKeys.GraphCell(graphPath, cell.id),
       },
     },
   );
 
-  const updateCellMutation = useSaveCellContentsApiCellsPut({
+  const updateCellMutation = useSaveCellContentsApiCellsCellIdPut({
     mutation: {
       onMutate: (data) => {
-        queryClient.setQueryData(['cell', graphPath, cell.id], data);
+        queryClient.setQueryData(QueryKeys.GraphCell(graphPath, cell.id), data);
       },
     },
   });
 
   const onSaveChanges = (content: string) => {
+    if (response?.data.content === content) {
+      return;
+    }
+
     updateCellMutation.mutate({
       data: {
         content,
       },
       params: {
         f: graphPath,
-        cell_id: cell.id,
       },
+      cellId: cell.id,
     });
   };
 

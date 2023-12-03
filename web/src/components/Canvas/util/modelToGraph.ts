@@ -30,11 +30,11 @@ const modelToGraph = (graph: GraphModel, model: DiagramModel): GraphModel => {
     mutable_graph.links.push({
       from_cell: {
         id: fromCell.id,
-        port: fromPort.getName(),
+        port: Number.parseInt(fromPort.getName(), 10),
       },
       to_cell: {
         id: toCell.id,
-        port: toPort.getName(),
+        port: Number.parseInt(toPort.getName(), 10),
       },
       value: null,
     });
