@@ -32,7 +32,8 @@ class GraphService:
             to_cells = [c for c in graph.cells if c.id == link.to_cell.id]
             if len(to_cells) != 1:
                 raise ValueError(
-                    f"Invalid graph! Attempting to link to non-existing cell (From {link.from_cell.id} to {link.to_cell.id})"
+                    f"Invalid graph! Attempting to link to non-existing cell "
+                    f"(From {link.from_cell.id} to {link.to_cell.id})"
                 )
 
             if to_cells[0].cell_type != "code":
@@ -42,7 +43,8 @@ class GraphService:
 
             if link.to_cell.port >= len(to_cell.params):
                 raise ValueError(
-                    f"Invalid graph! Attempting to link to non-existing parameter ({link.to_cell.port})"
+                    f"Invalid graph! Attempting to link to non-existing parameter "
+                    f"({link.to_cell.port})"
                 )
 
         return True

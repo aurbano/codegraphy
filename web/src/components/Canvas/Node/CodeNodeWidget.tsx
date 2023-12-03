@@ -10,6 +10,7 @@ import type { CellProps } from './CodeNodeFactory';
 import type { CodeNodeModel } from './CodeNodeModel';
 import Output from './Output';
 import Ports from './Ports';
+import BigEditor from './Toolbar/BigEditor';
 import RunCode from './Toolbar/RunCode';
 
 const PORTS_WIDTH_IN = '75px';
@@ -84,6 +85,7 @@ const CodeNodeWidget = ({ node, engine, cellProps }: NodeProps) => {
                     }}
                   />
 
+                  <BigEditor cell={cell} />
                   <RunCode cellId={cell.id} />
                 </ButtonGroup>
               </Box>
