@@ -3,7 +3,6 @@ import type { DiagramEngine } from '@projectstorm/react-diagrams';
 import { useState } from 'react';
 import { AiFillCode } from 'react-icons/ai';
 import { BiCollapseHorizontal, BiExpandHorizontal } from 'react-icons/bi';
-import { IoPlayOutline } from 'react-icons/io5';
 import { LuTextCursorInput } from 'react-icons/lu';
 
 import CodeNodeContent from './CodeNodeContent';
@@ -11,6 +10,7 @@ import type { CellProps } from './CodeNodeFactory';
 import type { CodeNodeModel } from './CodeNodeModel';
 import Output from './Output';
 import Ports from './Ports';
+import RunCode from './Toolbar/RunCode';
 
 const PORTS_WIDTH_IN = '75px';
 const PORTS_WIDTH_OUT = '10px';
@@ -83,13 +83,8 @@ const CodeNodeWidget = ({ node, engine, cellProps }: NodeProps) => {
                       setIsCollapsed(!isCollapsed);
                     }}
                   />
-                  <IconButton
-                    aria-label="Run code"
-                    icon={<IoPlayOutline />}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  />
+
+                  <RunCode cellId={cell.id} />
                 </ButtonGroup>
               </Box>
             )}

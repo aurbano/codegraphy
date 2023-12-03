@@ -1,8 +1,9 @@
 from typing import Tuple
 
-from .python_service import PythonService
+from src.graphs.domain.graph import CodeCellModel
 from src.graphs.domain.graph import GraphModel, CellModel, CellReturnValue
 from src.graphs.service.graph_service import GraphService
+from .python_service import PythonService
 from ..domain.cell import CellContent
 
 
@@ -46,38 +47,47 @@ class CellService:
         with open(file_path, mode="w") as f:
             f.write(content)
 
-        return self.run_cell(graph_path, cell_id=cell_id)
+        return graph
 
     def _get_cell_inputs(
-        self, graph_model: GraphModel, from_cell: CellModel
+        self, graph_model: GraphModel, to_cell: CellModel
     ) -> list[CellReturnValue]:
-        inputs: list[CellReturnValue] = []
-
-        graph_model.links = [
-            link for link in graph_model.links if link.from_cell == link.from_cell.id
+        links = [
+            (link.to_cell.port, link.value)
+            for link in graph_model.links
+            if link.to_cell.id == to_cell.id
         ]
+        links_sorted_by_port = sorted(links, key=lambda tup: tup[0])
 
-        for link in graph_model.links:
-            # TODO: Figure out which order the inputs should go in
-
-            if from_cell is None:
-                raise ValueError(
-                    f"Found {len(from_cell)} cells with the id {link.from_cell.id}"
-                )
-
-            # from_cell = from_cell[0]
-            inputs.append(link.value)
-
-        return inputs
+        return [link[1] for link in links_sorted_by_port]
 
     def run_cell(self, graph_path: str, cell_id: str) -> GraphModel:
         graph_model, cell = self._get_graph_and_cell(graph_path, cell_id=cell_id)
 
+        if cell.cell_type != "code":
+            raise ValueError("Only code cells can be run")
+
+        code_cell: CodeCellModel = cell
+
         try:
-            pass
-            # fn = self._python_service.get_fn(file_path)
-            # inputs = self._get_cell_inputs(graph_model, )
-            # output = self._python_service.run_method(fn, [1, 2, 4])
-        except Exception:
-            raise ValueError("Unable to run cell")
-        return graph_model
+            fn = self._python_service.get_fn(
+                graph_path, module_name=code_cell.file_name
+            )
+            inputs = self._get_cell_inputs(graph_model, to_cell=code_cell)
+            outputs = self._python_service.run_method(fn, args=inputs)
+
+            # Update output in the cell and any links
+            cell_json = code_cell.dict()
+            # Make an output parsing fn
+            cell_json["outputs"] = [str(outputs)]
+
+            new_cell = CodeCellModel.parse_obj(cell_json)
+
+            # Replace cell
+            graph_model.cells = [
+                new_cell if c.id == code_cell.id else c for c in graph_model.cells
+            ]
+
+            return self._graph_service.update_graph(graph_path, new_graph=graph_model)
+        except Exception as e:
+            raise ValueError("Unable to run cell", e)

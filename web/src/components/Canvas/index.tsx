@@ -30,6 +30,7 @@ const Canvas = ({ onUpateGraph, onSelectNode }: CanvasProps) => {
   useEffect(() => {
     engine.setModel(graphToModel(graphModel, onUpateGraph, onSelectNode));
     engine.zoomToFit();
+    engine.repaintCanvas();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [graphModel, engine]);
 

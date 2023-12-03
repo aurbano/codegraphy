@@ -6,7 +6,7 @@
  */
 
 export * from './apiRoot';
-export * from './bodySaveCellContentsApiCellsPut';
+export * from './bodySaveCellContentsApiCellsCellIdPut';
 export * from './cellContent';
 export * from './cellPosition';
 export * from './codeCellModel';
@@ -28,9 +28,10 @@ export * from './linkItemModelPort';
 export * from './linkModel';
 export * from './linkModelValue';
 export * from './metadataModel';
-export * from './readCellContentsApiCellsGetParams';
+export * from './readCellContentsApiCellsCellIdGetParams';
 export * from './readGraphApiGraphsGetParams';
-export * from './saveCellContentsApiCellsPutParams';
+export * from './runCellApiCellsCellIdRunPatchParams';
+export * from './saveCellContentsApiCellsCellIdPutParams';
 export * from './updateGraphApiGraphsPutParams';
 export * from './validationError';
 export * from './validationErrorLocItem';

@@ -5,7 +5,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type ReadCellContentsApiCellsGetParams = {
+export type ReadCellContentsApiCellsCellIdGetParams = {
   f: string;
-  cell_id: string;
 };
